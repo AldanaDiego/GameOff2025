@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b77tsg36445ax"]
+
+[ext_resource type="Script" uid="uid://cfgx26i8hc3a3" path="res://scripts/ui/settings/general_settings.gd" id="1_7rkvx"]
+[ext_resource type="PackedScene" uid="uid://d0d36rrvscs47" path="res://scenes/ui/settings/option_ui_select.tscn" id="2_32qys"]
+
+[node name="GeneralSettings" type="Control" node_paths=PackedStringArray("_sfx")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7rkvx")
+_sfx = NodePath("SFX")
+
+[node name="SettingsScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -250.0
+offset_right = 354.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="SettingsList" type="VBoxContainer" parent="SettingsScroll"]
+custom_minimum_size = Vector2(700, 150)
+layout_mode = 2
+
+[node name="Language" parent="SettingsScroll/SettingsList" instance=ExtResource("2_32qys")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/Language/Container" index="1"]
+text = "SETTINGS_LABEL_LANGUAGE"
+
+[node name="Value" parent="SettingsScroll/SettingsList/Language/Container" index="3"]
+auto_translate_mode = 1
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[editable path="SettingsScroll/SettingsList/Language"]

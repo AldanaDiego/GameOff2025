@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmtw0wo7ao3ry"]
+
+[ext_resource type="Script" uid="uid://cnvbixj2rto3g" path="res://scripts/ui/credits.gd" id="1_oap8i"]
+
+[node name="Credits" type="Control" node_paths=PackedStringArray("_sections")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oap8i")
+_sections = [NodePath("Programming")]
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CREDITS_BUTTON_BACK"
+icon_alignment = 2
+
+[node name="Programming" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 97.928
+offset_top = 134.953
+offset_right = 339.928
+offset_bottom = 184.953
+
+[node name="Title" type="Label" parent="Programming"]
+layout_mode = 2
+text = "CREDITS_TITLE_PROGRAMMING"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="Programming"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Toson Devypr"
+horizontal_alignment = 1
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

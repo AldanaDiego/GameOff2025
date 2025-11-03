@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://bju1m2qrrlfpb"]
+
+[ext_resource type="Script" uid="uid://wyrm42l4oxt8" path="res://scripts/ui/title_screen.gd" id="1_2lxpd"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+script = ExtResource("1_2lxpd")
+
+[node name="Title" type="Label" parent="."]
+auto_translate_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.5
+offset_top = -160.0
+offset_right = 252.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Untitled Game"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -40.0
+offset_right = 194.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+text = "TITLE_BUTTON_START"
+
+[node name="SettingsButton" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+text = "TITLE_BUTTON_SETTINGS"
+
+[node name="CreditsButton" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+text = "TITLE_BUTTON_CREDITS"
+
+[node name="ExitButton" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 32
+text = "TITLE_BUTTON_EXIT"
+
+[node name="MenuSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

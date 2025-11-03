@@ -1,0 +1,145 @@
+# LANGUAGE translation for GodotTemplate for the following files:
+# res://scenes/ui/title_screen.tscn
+# res://scenes/ui/settings_menu.tscn
+# res://scenes/ui/settings/general_settings.tscn
+# res://scenes/ui/settings/video_settings.tscn
+# res://scenes/ui/settings/volume_settings.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GodotTemplate\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: scenes/ui/title_screen.tscn
+msgid "TITLE_BUTTON_START"
+msgstr "Jugar"
+
+#: scenes/ui/title_screen.tscn
+msgid "TITLE_BUTTON_SETTINGS"
+msgstr "Opciones"
+
+#: scenes/ui/title_screen.tscn
+msgid "TITLE_BUTTON_CREDITS"
+msgstr "Créditos"
+
+#: scenes/ui/title_screen.tscn
+msgid "TITLE_BUTTON_EXIT"
+msgstr "Salir"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_TAB_GENERAL"
+msgstr "General"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_TAB_VOLUME"
+msgstr "Volumen"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_TAB_VIDEO"
+msgstr "Video"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_TAB_KEYBOARD"
+msgstr "Teclado"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_TAB_CONTROLLER"
+msgstr "Mando"
+
+#: scenes/ui/settings_menu.tscn
+msgid "SETTINGS_BUTTON_SAVE"
+msgstr "Guardar"
+
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_LABEL_LANGUAGE"
+msgstr "Idioma"
+
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_OPTION_LANGUAGE_ENGLISH"
+msgstr "Inglés"
+
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_OPTION_LANGUAGE_SPANISH"
+msgstr "Español"
+
+#: scenes/ui/settings/video_settings.tscn
+msgid "SETTINGS_LABEL_SCREEN_MODE"
+msgstr "Modo Pantalla"
+
+#: scenes/ui/settings/video_settings.tscn
+msgid "SETTINGS_LABEL_WINDOW_SIZE"
+msgstr "Tamaño Pantalla"
+
+#: scenes/ui/settings/video_settings.tscn
+msgid "SETTINGS_OPTION_SCREEN_FULLSCREEN"
+msgstr "Pantalla Completa"
+
+#: scenes/ui/settings/video_settings.tscn
+msgid "SETTINGS_OPTION_SCREEN_WINDOW"
+msgstr "Ventana"
+
+#: scenes/ui/settings/volume_settings.tscn
+msgid "SETTINGS_LABEL_MASTER_VOLUME"
+msgstr "General"
+
+#: scenes/ui/settings/volume_settings.tscn
+msgid "SETTINGS_LABEL_MUSIC_VOLUME"
+msgstr "Música"
+
+#: scenes/ui/settings/volume_settings.tscn
+msgid "SETTINGS_LABEL_SFX_VOLUME"
+msgstr "Sonidos"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+msgid "SETTINGS_LABEL_MOVE_UP"
+msgstr "Mover Arriba"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+msgid "SETTINGS_LABEL_MOVE_DOWN"
+msgstr "Mover Abajo"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+msgid "SETTINGS_LABEL_MOVE_LEFT"
+msgstr "Mover Izquierda"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+msgid "SETTINGS_LABEL_MOVE_RIGHT"
+msgstr "Mover Derecha"
+
+#: scenes/ui/settings/option_ui_input_prompt.tscn
+msgid "SETTINGS_INPUT_PROMPT"
+msgstr "Presiona una tecla"
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_USED"
+msgstr "La tecla presionada ya está en uso"
+
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_TAB_LEFT"
+msgstr "Menú Pestaña Izquierda"
+
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_TAB_RIGHT"
+msgstr "Menú Pestaña Derecha"
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_BUTTON_BACK"
+msgstr "Volver"
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_PROGRAMMING"
+msgstr "Programación"
+
+#~ msgid "SETTING_INPUT_ERROR_INVALID"
+#~ msgstr "La tecla presionada es inválida"

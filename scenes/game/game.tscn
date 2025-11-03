@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://lsegrykfv1ap"]
+
+[ext_resource type="Script" uid="uid://blaskxyf3wgol" path="res://scripts/game/game.gd" id="1_6eho4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jnq3b"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_6eho4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.866344, 0)
+mesh = SubResource("CapsuleMesh_jnq3b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.199761, 0.979845, 0, -0.979845, 0.199761, 0, 6.60092, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.879483, 0.475931, 0, -0.475931, 0.879483, 0, 2.68025, 5.00432)

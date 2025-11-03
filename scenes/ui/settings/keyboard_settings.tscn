@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck1ppfxji4t4n"]
+
+[ext_resource type="Script" uid="uid://q2uorueidn30" path="res://scripts/ui/settings/keyboard_settings.gd" id="1_vm3u3"]
+[ext_resource type="PackedScene" uid="uid://brkmlnp2lrhom" path="res://scenes/ui/settings/option_ui_input.tscn" id="2_oj1pn"]
+[ext_resource type="PackedScene" uid="uid://cu0t3ksoko28n" path="res://scenes/ui/settings/option_ui_input_prompt.tscn" id="3_etkk7"]
+
+[node name="KeyboardSettings" type="Control" node_paths=PackedStringArray("_sfx")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vm3u3")
+_sfx = NodePath("SFX")
+
+[node name="SettingsScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -250.0
+offset_right = 275.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="SettingsList" type="VBoxContainer" parent="SettingsScroll"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="MoveUp" parent="SettingsScroll/SettingsList" instance=ExtResource("2_oj1pn")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/MoveUp/Container" index="1"]
+text = "SETTINGS_LABEL_MOVE_UP"
+
+[node name="MoveDown" parent="SettingsScroll/SettingsList" instance=ExtResource("2_oj1pn")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/MoveDown/Container" index="1"]
+text = "SETTINGS_LABEL_MOVE_DOWN"
+
+[node name="MoveLeft" parent="SettingsScroll/SettingsList" instance=ExtResource("2_oj1pn")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/MoveLeft/Container" index="1"]
+text = "SETTINGS_LABEL_MOVE_LEFT"
+
+[node name="MoveRight" parent="SettingsScroll/SettingsList" instance=ExtResource("2_oj1pn")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/MoveRight/Container" index="1"]
+text = "SETTINGS_LABEL_MOVE_RIGHT"
+
+[node name="InputPrompt" parent="." instance=ExtResource("3_etkk7")]
+visible = false
+layout_mode = 1
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[editable path="SettingsScroll/SettingsList/MoveUp"]
+[editable path="SettingsScroll/SettingsList/MoveDown"]
+[editable path="SettingsScroll/SettingsList/MoveLeft"]
+[editable path="SettingsScroll/SettingsList/MoveRight"]
