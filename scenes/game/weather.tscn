@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b62xhn2js0lry"]
+
+[ext_resource type="Script" uid="uid://dbcpq6blpipvh" path="res://scripts/game/weather.gd" id="1_74chp"]
+
+[node name="Weather" type="Node3D"]
+script = ExtResource("1_74chp")
