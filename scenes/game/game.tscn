@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blaskxyf3wgol" path="res://scripts/game/game.gd" id="1_6eho4"]
 [ext_resource type="PackedScene" uid="uid://ih7uiwkwxfw" path="res://scenes/game/player.tscn" id="2_7h61r"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7h61r"]
-size = Vector3(10, 0.5, 10)
+[ext_resource type="PackedScene" uid="uid://bxibfkingkd6" path="res://scenes/game/stage.tscn" id="3_0sr1o"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_6eho4")
@@ -12,13 +10,9 @@ script = ExtResource("1_6eho4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.199761, 0.979845, 0, -0.979845, 0.199761, 0, 6.60092, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.879483, 0.475931, 0, -0.475931, 0.879483, 0, 2.68025, 5.00432)
-
 [node name="Player" parent="." instance=ExtResource("2_7h61r")]
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 0, 2.5, -4.5)
 
-[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-shape = SubResource("BoxShape3D_7h61r")
+[node name="Stage" parent="." instance=ExtResource("3_0sr1o")]

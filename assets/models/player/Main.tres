@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://qtbibg1jamvh"]
+
+[ext_resource type="Texture2D" uid="uid://nwhlfrqdgbko" path="res://assets/models/player/scorpion_scorpion_atlas.png" id="1_by34t"]
+
+[resource]
+resource_name = "Main"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_by34t")
+roughness = 0.0
