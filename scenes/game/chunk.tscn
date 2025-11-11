@@ -1,16 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://s47pl5eayam1"]
+[gd_scene load_steps=6 format=3 uid="uid://s47pl5eayam1"]
 
 [ext_resource type="Script" uid="uid://cfnirka8qamsp" path="res://scripts/game/chunk.gd" id="1_mwome"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h61r"]
-size = Vector3(50, 0.5, 50)
+size = Vector3(100, 0.5, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7h61r"]
 albedo_color = Color(0.782854, 0.496744, 0.29722, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0sr1o"]
 material = SubResource("StandardMaterial3D_7h61r")
-size = Vector2(50, 50)
+size = Vector2(100, 100)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mwome"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 4.0
 
 [node name="Chunk" type="StaticBody3D"]
 script = ExtResource("1_mwome")
@@ -21,3 +26,7 @@ shape = SubResource("BoxShape3D_7h61r")
 
 [node name="FloorMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_0sr1o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01181, 0)
+mesh = SubResource("CylinderMesh_mwome")

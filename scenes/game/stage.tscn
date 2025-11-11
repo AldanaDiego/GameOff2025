@@ -1,24 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxibfkingkd6"]
+[gd_scene load_steps=3 format=3 uid="uid://bxibfkingkd6"]
 
 [ext_resource type="Script" uid="uid://ck52uhic4tk4y" path="res://scripts/game/stage.gd" id="1_divbv"]
 [ext_resource type="PackedScene" uid="uid://s47pl5eayam1" path="res://scenes/game/chunk.tscn" id="2_spkqr"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_spkqr"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_y6o0k"]
-
 [node name="Stage" type="Node3D"]
 script = ExtResource("1_divbv")
 
-[node name="Chunk" parent="." instance=ExtResource("2_spkqr")]
+[node name="Chunk0" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
+
+[node name="Chunk1" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
 
 [node name="Chunk2" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.972809, 6.60151)
-mesh = SubResource("CylinderMesh_spkqr")
+[node name="Chunk3" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412929, -27.8604)
-mesh = SubResource("PrismMesh_y6o0k")
+[node name="Chunk4" parent="." instance=ExtResource("2_spkqr")]
+
+[node name="Chunk5" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+
+[node name="Chunk6" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
+
+[node name="Chunk7" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="Chunk8" parent="." instance=ExtResource("2_spkqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)

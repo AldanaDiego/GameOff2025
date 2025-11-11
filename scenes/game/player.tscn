@@ -1,11 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://ih7uiwkwxfw"]
+[gd_scene load_steps=12 format=3 uid="uid://ih7uiwkwxfw"]
 
 [ext_resource type="Script" uid="uid://dqud1a66373hr" path="res://scripts/game/player.gd" id="1_6w7gq"]
 [ext_resource type="PackedScene" uid="uid://b68tqywt7f6oh" path="res://assets/models/player/scorpion.glb" id="2_dd427"]
+[ext_resource type="Shader" uid="uid://c1cvhn0r63bnp" path="res://assets/shaders/liquid.gdshader" id="3_nybob"]
 [ext_resource type="PackedScene" uid="uid://4onjt8uqfnkd" path="res://assets/models/player/wheel.glb" id="3_u3rb4"]
+[ext_resource type="Script" uid="uid://bek8jvkf2t3sd" path="res://scripts/game/liquid.gd" id="4_68xwl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3rb4"]
 friction = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68xwl"]
+transparency = 1
+cull_mode = 1
+depth_draw_mode = 1
+albedo_color = Color(0, 0, 1, 0.25098)
+rim_enabled = true
+rim = 0.89
+rim_tint = 0.66
+
+[sub_resource type="Gradient" id="Gradient_68xwl"]
+offsets = PackedFloat32Array(0, 0.523316)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.784314, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wwvfn"]
+gradient = SubResource("Gradient_68xwl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8yk2"]
+render_priority = 0
+shader = ExtResource("3_nybob")
+shader_parameter/liquid_height = 0.295
+shader_parameter/liquid_surface_color = Color(0, 0.560784, 1, 1)
+shader_parameter/liquid_rim_gradient = SubResource("GradientTexture1D_wwvfn")
+shader_parameter/rim_emission_intensity = 1.0
+shader_parameter/rim_exponent = 3.0
+shader_parameter/emission_intensity = 0.4
+shader_parameter/liquid_surface_gradient_size = 0.15
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6w7gq"]
 size = Vector3(1, 0.5, 2)
@@ -16,7 +46,21 @@ center_of_mass_mode = 1
 script = ExtResource("1_6w7gq")
 
 [node name="scorpion" parent="." instance=ExtResource("2_dd427")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.879448, -0.544013)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.309663, -0.0925105)
+
+[node name="Tank" parent="scorpion/Armature/Skeleton3D" index="6"]
+material_override = SubResource("StandardMaterial3D_68xwl")
+
+[node name="TankLiquid" parent="scorpion/Armature/Skeleton3D" index="7"]
+material_override = SubResource("ShaderMaterial_t8yk2")
+script = ExtResource("4_68xwl")
+max_wobble = 0.03
+movement_to_max_wobble = 1.0
+wobble_damping = 0.5
+wobble_speed = 1.0
+
+[node name="AnimationPlayer" parent="scorpion" index="1"]
+autoplay = "Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -72,3 +116,5 @@ damping_compression = 0.88
 
 [node name="CameraController" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4.5)
+
+[editable path="scorpion"]
