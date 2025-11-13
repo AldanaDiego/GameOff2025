@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://c54j2cgot4p2i"]
+
+[ext_resource type="Script" uid="uid://b4ugbs1fiw2ms" path="res://scripts/ui/game/player_ui.gd" id="1_5ewls"]
+[ext_resource type="Texture2D" uid="uid://d1beqw5fmjsva" path="res://assets/images/thermometer.png" id="2_ws7qx"]
+[ext_resource type="Texture2D" uid="uid://c5ch2ah2ifwkg" path="res://assets/images/thermometer_blue.png" id="3_4ik5u"]
+[ext_resource type="Texture2D" uid="uid://bk6lgrhlgvnsb" path="res://assets/images/thermometer_red.png" id="4_y3x6d"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ewls")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(250, 400)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -460.0
+offset_right = -50.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="WaterTank" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(96, 384)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("2_ws7qx")
+expand_mode = 3
+
+[node name="WaterBar" type="TextureProgressBar" parent="HBoxContainer/WaterTank"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -181.5
+offset_right = 48.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("3_4ik5u")
+
+[node name="Thermometer" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(96, 384)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("2_ws7qx")
+expand_mode = 3
+
+[node name="TemperatureBar" type="TextureProgressBar" parent="HBoxContainer/Thermometer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -181.5
+offset_right = 48.0
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("4_y3x6d")

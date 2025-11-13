@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ur4ujjb7m74"]
+[gd_scene load_steps=11 format=3 uid="uid://c1ur4ujjb7m74"]
 
 [ext_resource type="Script" uid="uid://daw1770k4hxjq" path="res://scripts/game/hideout.gd" id="1_0lkg5"]
 [ext_resource type="ArrayMesh" uid="uid://bgxls06bqmfut" path="res://assets/models/props/kaykit_spacebits/windturbine_tall.obj" id="2_j6oyj"]
+[ext_resource type="Material" uid="uid://0pwcf8bbbfgr" path="res://assets/models/props/kaykit_spacebits/spacebits.tres" id="3_raqbg"]
+[ext_resource type="ArrayMesh" uid="uid://dka6mw6s8t3nm" path="res://assets/models/props/umbrella.obj" id="4_qbst6"]
+[ext_resource type="ArrayMesh" uid="uid://bcc148wd8hc3" path="res://assets/models/props/kaykit_spacebits/solarpanel.obj" id="5_qbst6"]
+[ext_resource type="ArrayMesh" uid="uid://by4ibbadbfp5o" path="res://assets/models/props/kaykit_spacebits/cargodepot_B.obj" id="6_stnmb"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w5n4u"]
 height = 1.0
@@ -16,6 +20,9 @@ top_radius = 4.0
 bottom_radius = 4.0
 height = 0.1
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_stnmb"]
+size = Vector3(2, 1, 2)
+
 [node name="Hideout" type="Node3D"]
 script = ExtResource("1_0lkg5")
 
@@ -26,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_w5n4u")
 
 [node name="WindturbineTall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 3.5, 0, 0, 0, 1.5, 0, 0.991714, 0)
 mesh = ExtResource("2_j6oyj")
 skeleton = NodePath("../Area3D")
 
@@ -34,3 +41,22 @@ skeleton = NodePath("../Area3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 material_override = SubResource("StandardMaterial3D_w5n4u")
 mesh = SubResource("CylinderMesh_w5n4u")
+
+[node name="Umbrella" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 3, 0, 0, 0, 4, 0, 6.35541, 0)
+material_override = ExtResource("3_raqbg")
+mesh = ExtResource("4_qbst6")
+
+[node name="Solarpanel" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 7.27122, 0)
+mesh = ExtResource("5_qbst6")
+
+[node name="CargodepotB" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.25)
+mesh = ExtResource("6_stnmb")
+
+[node name="BaseStatic" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaseStatic"]
+shape = SubResource("BoxShape3D_stnmb")
