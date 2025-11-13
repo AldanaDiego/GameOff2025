@@ -14,7 +14,7 @@ uniform float emission_intensity:hint_range(0.0, 3.0) = 0.1;
 // ANCHOR: gradient_size
 uniform float liquid_surface_gradient_size: hint_range(0.0, 3.0) = 0.1;
 // END: gradient_size
-uniform vec2 wobble = vec2(0.0, 0.0); 
+uniform vec2 wobble = vec2(0.0, 0.0);
 // ANCHOR: varying
 varying float y_coordinate;
 // END: varying

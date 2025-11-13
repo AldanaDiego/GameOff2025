@@ -1,33 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxibfkingkd6"]
+[gd_scene load_steps=5 format=3 uid="uid://bxibfkingkd6"]
 
 [ext_resource type="Script" uid="uid://ck52uhic4tk4y" path="res://scripts/game/stage.gd" id="1_divbv"]
 [ext_resource type="PackedScene" uid="uid://s47pl5eayam1" path="res://scenes/game/chunk.tscn" id="2_spkqr"]
+[ext_resource type="PackedScene" uid="uid://cdabtqsx37mkn" path="res://scenes/game/water_area.tscn" id="3_y6o0k"]
+[ext_resource type="PackedScene" uid="uid://c1ur4ujjb7m74" path="res://scenes/game/hideout.tscn" id="4_xcc28"]
 
 [node name="Stage" type="Node3D"]
 script = ExtResource("1_divbv")
+_chunk_prefab = ExtResource("2_spkqr")
 
-[node name="Chunk0" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
+[node name="CenterChunk" parent="." instance=ExtResource("2_spkqr")]
 
-[node name="Chunk1" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+[node name="WaterArea" parent="." instance=ExtResource("3_y6o0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9903, 0, 24.3724)
 
-[node name="Chunk2" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, -100)
-
-[node name="Chunk3" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
-
-[node name="Chunk4" parent="." instance=ExtResource("2_spkqr")]
-
-[node name="Chunk5" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
-
-[node name="Chunk6" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 100)
-
-[node name="Chunk7" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
-
-[node name="Chunk8" parent="." instance=ExtResource("2_spkqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 100)
+[node name="TreeHideout" parent="." instance=ExtResource("4_xcc28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2102, 0, 25.5909)

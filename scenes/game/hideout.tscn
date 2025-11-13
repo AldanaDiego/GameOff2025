@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1ur4ujjb7m74"]
+
+[ext_resource type="Script" uid="uid://daw1770k4hxjq" path="res://scripts/game/hideout.gd" id="1_0lkg5"]
+[ext_resource type="ArrayMesh" uid="uid://bgxls06bqmfut" path="res://assets/models/props/kaykit_spacebits/windturbine_tall.obj" id="2_j6oyj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w5n4u"]
+height = 1.0
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5n4u"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.556863)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w5n4u"]
+top_radius = 4.0
+bottom_radius = 4.0
+height = 0.1
+
+[node name="Hideout" type="Node3D"]
+script = ExtResource("1_0lkg5")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_w5n4u")
+
+[node name="WindturbineTall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = ExtResource("2_j6oyj")
+skeleton = NodePath("../Area3D")
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
+material_override = SubResource("StandardMaterial3D_w5n4u")
+mesh = SubResource("CylinderMesh_w5n4u")

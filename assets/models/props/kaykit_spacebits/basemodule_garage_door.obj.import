@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dxt8gtd1a80qy"
+path="res://.godot/imported/basemodule_garage_door.obj-f68e18fb13d5ef8b836c219add089d97.mesh"
+
+[deps]
+
+files=["res://.godot/imported/basemodule_garage_door.obj-f68e18fb13d5ef8b836c219add089d97.mesh"]
+
+source_file="res://assets/models/props/kaykit_spacebits/basemodule_garage_door.obj"
+dest_files=["res://.godot/imported/basemodule_garage_door.obj-f68e18fb13d5ef8b836c219add089d97.mesh", "res://.godot/imported/basemodule_garage_door.obj-f68e18fb13d5ef8b836c219add089d97.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

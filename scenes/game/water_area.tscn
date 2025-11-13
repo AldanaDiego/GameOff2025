@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdabtqsx37mkn"]
+
+[ext_resource type="Script" uid="uid://ci2mhk664qqr4" path="res://scripts/game/water_area.gd" id="1_dra44"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tjdap"]
+height = 1.0
+radius = 3.0
+
+[node name="WaterArea" type="Node3D"]
+script = ExtResource("1_dra44")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_tjdap")
