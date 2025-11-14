@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ih7uiwkwxfw"]
+[gd_scene load_steps=19 format=3 uid="uid://ih7uiwkwxfw"]
 
 [ext_resource type="Script" uid="uid://dqud1a66373hr" path="res://scripts/game/player.gd" id="1_6w7gq"]
 [ext_resource type="PackedScene" uid="uid://b68tqywt7f6oh" path="res://assets/models/player/scorpion.glb" id="2_dd427"]
@@ -41,10 +41,45 @@ shader_parameter/wobble = Vector2(0, 0)
 radius = 0.75
 height = 3.0
 
-[node name="Player" type="VehicleBody3D" groups=["Player"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwvfn"]
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+roughness = 0.0
+
+[sub_resource type="Curve" id="Curve_68xwl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.112981, 1), 0.0, 0.0, 0, 0, Vector2(0.673077, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_wwvfn"]
+curve = SubResource("Curve_68xwl")
+
+[sub_resource type="Curve" id="Curve_t8yk2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.173077, 1), 0.0, 0.0, 0, 0, Vector2(0.519231, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.4643), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_m5ugi"]
+curve = SubResource("Curve_t8yk2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t8yk2"]
+emission_shape_scale = Vector3(0.25, 0.1, 0.2)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0.1, 0)
+scale_curve = SubResource("CurveTexture_m5ugi")
+color = Color(0.852826, 0.724319, 0.460868, 1)
+alpha_curve = SubResource("CurveTexture_wwvfn")
+
+[sub_resource type="SphereMesh" id="SphereMesh_m5ugi"]
+radius = 0.1
+height = 0.2
+
+[node name="Player" type="VehicleBody3D" node_paths=PackedStringArray("_wheel_dust") groups=["Player"]]
 physics_material_override = SubResource("PhysicsMaterial_u3rb4")
 center_of_mass_mode = 1
 script = ExtResource("1_6w7gq")
+_wheel_dust = [NodePath("BackLeft/WheelDust"), NodePath("BackRight/WheelDust")]
 
 [node name="scorpion" parent="." instance=ExtResource("2_dd427")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.309663, -0.0925105)
@@ -127,6 +162,14 @@ damping_compression = 0.88
 
 [node name="wheel" parent="BackLeft" instance=ExtResource("3_u3rb4")]
 
+[node name="WheelDust" type="GPUParticles3D" parent="BackLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_wwvfn")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_t8yk2")
+draw_pass_1 = SubResource("SphereMesh_m5ugi")
+
 [node name="BackRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.376, 0.25, -0.69)
 use_as_traction = true
@@ -138,6 +181,14 @@ suspension_stiffness = 40.0
 damping_compression = 0.88
 
 [node name="wheel" parent="BackRight" instance=ExtResource("3_u3rb4")]
+
+[node name="WheelDust" type="GPUParticles3D" parent="BackRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_wwvfn")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_t8yk2")
+draw_pass_1 = SubResource("SphereMesh_m5ugi")
 
 [node name="FrontRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.282, 0.25, 0.506)

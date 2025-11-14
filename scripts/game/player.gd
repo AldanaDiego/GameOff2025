@@ -12,24 +12,30 @@ const DRILL_ACTION_DURATION: float = 3.0
 
 enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 
+@export var _wheel_dust: Array[GPUParticles3D]
+
 @onready var camera_controller: Node3D = $CameraController
 @onready var _animation: AnimationPlayer = $scorpion/AnimationPlayer
 
 var _state: PlayerState
 var _drill_button_pressed: float
 var _drill_action_timer: Timer
+var _current_water_spot: WaterSpot
+var _speed_stage: int
 
 func _ready() -> void:
     _animation.playback_default_blend_time = 1
     _drill_button_pressed = 0.0
     _state = PlayerState.IDLE
     _drill_action_timer = GlobalTools.add_timer_node(self, DRILL_ACTION_DURATION)
+    _current_water_spot = null
+    _speed_stage = 0
 
 func _physics_process(delta) -> void:
     if Input.is_action_just_pressed("drill_menu_ok"):
         _state = PlayerState.DRILL_CHARGE
         _drill_button_pressed = 0.0
-        brake = 5
+        brake = 1
         #TODO play animation
 
     elif Input.is_action_pressed("drill_menu_ok"):
@@ -71,6 +77,13 @@ func _physics_process(delta) -> void:
         else:
             _animation.play("Drive_Backward" if engine_force < 0 else "Drive_Forward")
 
+    var new_speed_stage: int = floori(linear_velocity.length() / 3.5)
+    if _speed_stage != new_speed_stage:
+        _speed_stage = new_speed_stage
+        for particles in _wheel_dust:
+            particles.emitting = _speed_stage > 0
+            particles.amount_ratio = 0.5 if _speed_stage < 2 else 1.0
+
 ## Digs into the ground interacting with a nearby [class WaterSpot]
 func _start_drill_action() -> void:
     _state = PlayerState.DRILL
@@ -78,7 +91,13 @@ func _start_drill_action() -> void:
     print_debug("Digging!")
     _drill_action_timer.start()
     await _drill_action_timer.timeout
+    if _current_water_spot != null:
+        _current_water_spot.extract()
     print_debug("Finished diggin!")
     brake = 0
     _state = PlayerState.IDLE
     #TODO play animation, dig
+
+## Updates references to WaterSpot when entering or leaving their Area3D
+func set_current_water_spot(spot: WaterSpot) -> void:
+    _current_water_spot = spot
