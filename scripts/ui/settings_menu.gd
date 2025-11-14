@@ -24,7 +24,7 @@ func _ready() -> void:
 	_state = GlobalConstants.State.HIDDEN
 	_navigation_timer = GlobalTools.add_ui_navigation_timer(self)
 
-	_save_button.icon = InputDisplay.get_action_icon("MenuBack")
+	_save_button.icon = InputDisplay.get_action_icon("RadarMenuBack")
 	_tab_navbar_left.texture_normal = InputDisplay.get_action_icon("MenuTabLeft")
 	_tab_navbar_right.texture_normal = InputDisplay.get_action_icon("MenuTabRight")
 	
@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 			_menu_sfx.play()
 			_change_to_next_tab(1)
 			_navigation_timer.start()
-		elif event.is_action_pressed("menu_back"):
+		elif event.is_action_pressed("radar_menu_back"):
 			_on_save_button_pressed()
 
 ## Shows or hides this UI.
@@ -102,15 +102,15 @@ func _on_submenu_state_changed(submenu_state: GlobalConstants.State) -> void:
 
 ## Listen to changes in input method to show appropiate icons
 func _on_input_method_changed(_method: InputDisplay.InputMethod) -> void:
-	_save_button.icon = InputDisplay.get_action_icon("MenuBack")
+	_save_button.icon = InputDisplay.get_action_icon("RadarMenuBack")
 	_tab_navbar_left.texture_normal = InputDisplay.get_action_icon("MenuTabLeft")
 	_tab_navbar_right.texture_normal = InputDisplay.get_action_icon("MenuTabRight")
 
 ## Listen to changes in keyboard settings to show appropiate icons
 func _on_input_setting_changed(_section: String, key: String, _value) -> void:
 	match key:
-		"MenuBack":
-			_save_button.icon = InputDisplay.get_action_icon("MenuBack")
+		"RadarMenuBack":
+			_save_button.icon = InputDisplay.get_action_icon("RadarMenuBack")
 		"MenuTabLeft":
 			_tab_navbar_left.texture_normal = InputDisplay.get_action_icon("MenuTabLeft")
 		"MenuTabRight":

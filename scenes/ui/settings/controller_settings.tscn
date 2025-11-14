@@ -33,6 +33,20 @@ horizontal_scroll_mode = 0
 custom_minimum_size = Vector2(600, 500)
 layout_mode = 2
 
+[node name="DrillOk" parent="SettingsScroll/SettingsList" instance=ExtResource("1_0x27n")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/DrillOk/Container" index="1"]
+text = "SETTINGS_LABEL_DRILL_OK"
+
+[node name="RadarBack" parent="SettingsScroll/SettingsList" instance=ExtResource("1_0x27n")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/RadarBack/Container" index="1"]
+text = "SETTINGS_LABEL_RADAR_BACK"
+
 [node name="TabLeft" parent="SettingsScroll/SettingsList" instance=ExtResource("1_0x27n")]
 layout_mode = 2
 size_flags_vertical = 3
@@ -54,5 +68,7 @@ layout_mode = 1
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
+[editable path="SettingsScroll/SettingsList/DrillOk"]
+[editable path="SettingsScroll/SettingsList/RadarBack"]
 [editable path="SettingsScroll/SettingsList/TabLeft"]
 [editable path="SettingsScroll/SettingsList/TabRight"]

@@ -15,14 +15,14 @@ signal on_back_pressed
 
 func _ready() -> void:
 	_state = GlobalConstants.State.HIDDEN
-	_back_button.icon = InputDisplay.get_action_icon("MenuBack")
+	_back_button.icon = InputDisplay.get_action_icon("RadarMenuBack")
 	_back_button.pressed.connect(_on_back_button_pressed)
-	InputDisplay.on_input_method_changed.connect(func(_method: InputDisplay.InputMethod): _back_button.icon = InputDisplay.get_action_icon("Attack_MenuBack"))
+	InputDisplay.on_input_method_changed.connect(func(_method: InputDisplay.InputMethod): _back_button.icon = InputDisplay.get_action_icon("RadarMenuBack"))
 	for section in _sections:
 		section.hide()
 
 func _input(event):
-	if _state == GlobalConstants.State.ACTIVE and event.is_action_pressed("menu_back"):
+	if _state == GlobalConstants.State.ACTIVE and event.is_action_pressed("radar_menu_back"):
 		_on_back_button_pressed()
 
 ## Signals to go back into title screen

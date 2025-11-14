@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://s47pl5eayam1"]
+[gd_scene load_steps=7 format=3 uid="uid://s47pl5eayam1"]
 
 [ext_resource type="Script" uid="uid://cfnirka8qamsp" path="res://scripts/game/chunk.gd" id="1_mwome"]
-[ext_resource type="PackedScene" uid="uid://cdabtqsx37mkn" path="res://scenes/game/water_area.tscn" id="2_7tsyb"]
+[ext_resource type="PackedScene" uid="uid://cdabtqsx37mkn" path="res://scenes/game/water_spot.tscn" id="2_7tsyb"]
+[ext_resource type="PackedScene" uid="uid://c1ur4ujjb7m74" path="res://scenes/game/hideout.tscn" id="3_20fyn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h61r"]
 size = Vector3(100, 0.5, 100)
@@ -15,7 +16,8 @@ size = Vector2(100, 100)
 
 [node name="Chunk" type="StaticBody3D"]
 script = ExtResource("1_mwome")
-_water_area_prefab = ExtResource("2_7tsyb")
+_water_spot_prefab = ExtResource("2_7tsyb")
+_hideout_prefab = ExtResource("3_20fyn")
 
 [node name="FloorCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)

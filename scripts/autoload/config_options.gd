@@ -77,33 +77,37 @@ var _settings := {
 			"default": KEY_D,
 			"input_action": "move_right"
 		},
-		"MenuOk": {
+		"DrillMenuOk": {
 			"type": OptionType.INPUT_KEYBOARD,
-			"default": KEY_F
+			"default": KEY_F,
+			"input_action": "drill_menu_ok"
 		},
-		"MenuBack": {
+		"RadarMenuBack": {
 			"type": OptionType.INPUT_KEYBOARD,
-			"default": KEY_R
+			"default": KEY_R,
+			"input_action": "radar_menu_back"
 		},
 		"MenuTabLeft": {
 			"type": OptionType.INPUT_KEYBOARD,
-			"default": KEY_Q
+			"default": KEY_Q,
+			"input_action": "menu_tab_left"
 		},
 		"MenuTabRight": {
 			"type": OptionType.INPUT_KEYBOARD,
-			"default": KEY_E
+			"default": KEY_E,
+			"input_action": "menu_tab_right"
 		}
 	},
 	"Controller": {
-		"MenuOk": {
+		"DrillMenuOk": {
 			"type": OptionType.INPUT_CONTROLLER,
 			"default": JOY_BUTTON_A,
-			"input_action": "menu_ok"
+			"input_action": "drill_menu_ok"
 		},
-		"MenuBack": {
+		"RadarMenuBack": {
 			"type": OptionType.INPUT_CONTROLLER,
 			"default": JOY_BUTTON_B,
-			"input_action": "menu_back"
+			"input_action": "radar_menu_back"
 		},
 		"MenuTabLeft": {
 			"type": OptionType.INPUT_CONTROLLER,

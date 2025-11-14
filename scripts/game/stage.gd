@@ -3,7 +3,6 @@ class_name Stage extends Node3D
 
 const MAP_WIDTH: int = 3
 const MAP_HEIGHT: int = 3
-const CHUNK_SIZE: int = 100
 
 @export var _chunk_prefab: PackedScene
 
@@ -16,9 +15,9 @@ func _ready() -> void:
 	for i in range(MAP_WIDTH):
 		for j in range(MAP_HEIGHT):
 			var pos: Vector3 = Vector3(
-				(CHUNK_SIZE * i) - (CHUNK_SIZE * floori(MAP_WIDTH / 2.0)),
+				(Chunk.SIZE * i) - (Chunk.SIZE * floori(MAP_WIDTH / 2.0)),
 				0,
-				(CHUNK_SIZE * j) - (CHUNK_SIZE * floori(MAP_HEIGHT / 2.0)),
+				(Chunk.SIZE * j) - (Chunk.SIZE * floori(MAP_HEIGHT / 2.0)),
 			)
 			
 			if pos == Vector3.ZERO:

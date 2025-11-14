@@ -40,7 +40,7 @@ func _ready() -> void:
 ## Listens to menu navigation input, changing the currently focused button.
 func _input(event: InputEvent) -> void:
 	if _state == GlobalConstants.State.ACTIVE:
-		if event.is_action("menu_ok"):
+		if event.is_action("drill_menu_ok"):
 			_button_group.get_child(_current_index).pressed.emit()
 		elif _navigation_timer.is_stopped():
 			var movement = GlobalTools.get_input_axis_movement(event, JOY_AXIS_LEFT_Y)

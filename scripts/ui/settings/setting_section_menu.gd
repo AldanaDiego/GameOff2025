@@ -26,7 +26,7 @@ func _ready() -> void:
 ## Listens to user input to navigate through the menu.
 func _input(event: InputEvent) -> void:
 	if _state == GlobalConstants.State.ACTIVE and _navigation_timer.is_stopped():
-		if event.is_action("menu_ok"):
+		if event.is_action("drill_menu_ok"):
 			_settings[_current_index].change_option_prompt()
 		else:
 			var movement_y = GlobalTools.get_input_axis_movement(event, JOY_AXIS_LEFT_Y)

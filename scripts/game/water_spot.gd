@@ -1,4 +1,4 @@
-class_name WaterArea extends Node3D
+class_name WaterSpot extends Node3D
 ## Area where player can dig to find water
 
 @onready var _area: Area3D = $Area3D

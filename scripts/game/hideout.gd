@@ -1,4 +1,4 @@
-class_name TreeHideout extends Node3D
+class_name Hideout extends Node3D
 ## Area where the player can hide from the sunlight
 
 @onready var _area: Area3D = $Area3D
