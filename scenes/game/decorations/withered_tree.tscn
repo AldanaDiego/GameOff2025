@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://drb8x87nryw0u"]
+
+[ext_resource type="ArrayMesh" uid="uid://okx77x1jcf41" path="res://assets/models/props/kaykit_forest/Tree_Bare_2_A_Color1.obj" id="1_uy72p"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oe8wm"]
+height = 3.0
+radius = 0.55
+
+[node name="WitheredTree" type="StaticBody3D"]
+
+[node name="TreeBare2AColor1" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.125775, 0)
+mesh = ExtResource("1_uy72p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_oe8wm")

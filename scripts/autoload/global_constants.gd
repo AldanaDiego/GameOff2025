@@ -17,4 +17,4 @@ const MENU_OK_SFX: AudioStream = null
 const MENU_MOVE_SFX: AudioStream = null
 const MENU_CANCEL_SFX: AudioStream = null
 
-const PLAYER_RADAR_DISTANCE: float = 75.0
+const PLAYER_RADAR_DISTANCE: float = 50.0

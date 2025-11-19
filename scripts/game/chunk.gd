@@ -4,7 +4,8 @@ class_name Chunk extends StaticBody3D
 const SIZE: float = 100.0
 const WATER_SPOT_COUNT: int = 3
 const HIDEOUT_COUNT: int = 1
-const DISTANCE_BETWEEN_PROPS: float = 10.0
+const DISTANCE_BETWEEN_PROPS: float = 20.0
+const GENERATE_POSITION_OFFSET: float = 10.0
 
 @export var _water_spot_prefab: PackedScene
 @export var _hideout_prefab: PackedScene
@@ -31,8 +32,9 @@ func setup(props: Array[PackedScene]) -> void:
 		add_child(water_spot)
 
 	for prop_prefab in props:
-		var prop = prop_prefab.instantiate()
-		prop.position = _generate_position
+		var prop = prop_prefab.instantiate() as Node3D
+		prop.position = _generate_position()
+		prop.rotation_degrees.y = randf_range(0, 360)
 		add_child(prop)
 
 	#TODO add other diggable spots
@@ -55,9 +57,9 @@ func _generate_position() -> Vector3:
 
 	while !is_valid_pos:
 		pos = Vector3(
-			randf_range(-SIZE/2, SIZE/2),
+			randf_range(-SIZE/2 + GENERATE_POSITION_OFFSET, SIZE/2 - GENERATE_POSITION_OFFSET),
 			0.0,
-			randf_range(-SIZE/2, SIZE/2)
+			randf_range(-SIZE/2 + GENERATE_POSITION_OFFSET, SIZE/2 - GENERATE_POSITION_OFFSET)
 		)
 		is_valid_pos = true
 		for prop in _hideouts + _water_spots:
