@@ -8,7 +8,9 @@ const BRAKE_STRENGTH: float = 2.0
 const MAX_SPEED_FOR_ACCEL: float = 6.0
 const MAX_ENGINE_ACCEL: float = 100.0
 const DRILL_ACTION_HOLD_TIME: float = 2.5
+const RADAR_ACTION_HOLD_TIME: float = 2.5
 const DRILL_ACTION_DURATION: float = 3.0
+const RADAR_ACTION_DURATION: float = 1.5
 
 enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 
@@ -16,18 +18,26 @@ enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 
 @onready var camera_controller: Node3D = $CameraController
 @onready var _animation: AnimationPlayer = $scorpion/AnimationPlayer
+@onready var _radar_charge_vfx: GPUParticles3D = $RadarChargeParticles
+@onready var _radar_wave_vfx: GPUParticles3D = $RadarWaveParticles
 
 var _state: PlayerState
 var _drill_button_pressed: float
 var _drill_action_timer: Timer
+var _radar_button_pressed: float
+var _radar_action_timer: Timer
 var _current_water_spot: WaterSpot
 var _speed_stage: int
 
+signal on_radar_used
+
 func _ready() -> void:
-    _animation.playback_default_blend_time = 1
+    _animation.playback_default_blend_time = 1.0
     _drill_button_pressed = 0.0
+    _radar_button_pressed = 0.0
     _state = PlayerState.IDLE
     _drill_action_timer = GlobalTools.add_timer_node(self, DRILL_ACTION_DURATION)
+    _radar_action_timer = GlobalTools.add_timer_node(self, RADAR_ACTION_DURATION)
     _current_water_spot = null
     _speed_stage = 0
 
@@ -50,7 +60,25 @@ func _physics_process(delta) -> void:
             brake = 0
             _animation.play("Idle")
 
-    #TODO same as before for radar action
+    if Input.is_action_just_pressed("radar_menu_back"):
+        _state = PlayerState.RADAR_CHARGE
+        _radar_button_pressed = 0.0
+        _radar_charge_vfx.emitting = true
+        brake = 1
+        #TODO play animation
+
+    elif Input.is_action_pressed("radar_menu_back"):
+        if _state == PlayerState.RADAR_CHARGE:
+            _radar_button_pressed += delta
+            if _radar_button_pressed >= RADAR_ACTION_HOLD_TIME:
+                _start_radar_action()
+
+    elif Input.is_action_just_released("radar_menu_back"):
+        if _state == PlayerState.RADAR_CHARGE:
+            _state = PlayerState.IDLE
+            _radar_charge_vfx.emitting = false
+            brake = 0
+            _animation.play("Idle")
 
     if _state == PlayerState.IDLE:
         var steer_input: float = Input.get_axis("move_right", "move_left")
@@ -88,15 +116,32 @@ func _physics_process(delta) -> void:
 func _start_drill_action() -> void:
     _state = PlayerState.DRILL
     linear_velocity = Vector3.ZERO
-    print_debug("Digging!")
+    
     _drill_action_timer.start()
     await _drill_action_timer.timeout
+    
     if _current_water_spot != null:
         _current_water_spot.extract()
-    print_debug("Finished diggin!")
     brake = 0
     _state = PlayerState.IDLE
     #TODO play animation, dig
+
+## Highlights nearby digging spots
+func _start_radar_action() -> void:
+    _state = PlayerState.RADAR
+    linear_velocity = Vector3.ZERO
+    _radar_charge_vfx.emitting = false
+    _radar_wave_vfx.emitting = true
+    
+    _radar_action_timer.start()
+    await _radar_action_timer.timeout
+
+    brake = 0
+    _radar_wave_vfx.emitting = false
+    _state = PlayerState.IDLE
+    on_radar_used.emit()
+
+    #TODO play animations
 
 ## Updates references to WaterSpot when entering or leaving their Area3D
 func set_current_water_spot(spot: WaterSpot) -> void:

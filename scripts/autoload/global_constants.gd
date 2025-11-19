@@ -16,3 +16,5 @@ const JOYSTICK_DEADZONE: float = 0.5
 const MENU_OK_SFX: AudioStream = null
 const MENU_MOVE_SFX: AudioStream = null
 const MENU_CANCEL_SFX: AudioStream = null
+
+const PLAYER_RADAR_DISTANCE: float = 75.0

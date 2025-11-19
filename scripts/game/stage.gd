@@ -24,9 +24,14 @@ func _ready() -> void:
 				continue
 
 			var chunk: Chunk = _chunk_prefab.instantiate() as Chunk
-			chunk.position = pos
-			chunk.setup()
-			_chunks.append(chunk)
 			add_child(chunk)
+			chunk.position = pos
+			chunk.setup([])
+			_chunks.append(chunk)
 
 	on_stage_ready.emit()
+
+## For each [class Chunk] reveal diggable spots that are at a certain distance from [param pos]
+func reveal_diggable_spots(pos: Vector3) -> void:
+	for chunk in _chunks:
+		chunk.reveal_diggable_spots(pos)

@@ -9,6 +9,7 @@ class_name Game extends Node3D
 
 func _ready() -> void:
     _stage.on_stage_ready.connect(_on_stage_ready)
+    _player.on_radar_used.connect(_on_player_radar_used)
 
 func _process(_delta) -> void:
     _camera.position.x = _player.camera_controller.global_position.x
@@ -17,3 +18,8 @@ func _process(_delta) -> void:
 
 func _on_stage_ready() -> void:
     pass
+
+## Checks if there is any WaterSpot nearby the player when the radar is used
+func _on_player_radar_used() -> void:
+    var pos = _player.global_position
+    _stage.reveal_diggable_spots(pos)

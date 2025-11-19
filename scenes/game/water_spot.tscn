@@ -1,10 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdabtqsx37mkn"]
+[gd_scene load_steps=17 format=3 uid="uid://cdabtqsx37mkn"]
 
 [ext_resource type="Script" uid="uid://ci2mhk664qqr4" path="res://scripts/game/water_spot.gd" id="1_28lgv"]
+[ext_resource type="Texture2D" uid="uid://caje231lgkiv3" path="res://assets/images/donut.png" id="2_vq5qy"]
+[ext_resource type="Texture2D" uid="uid://bytj0u4185ioh" path="res://assets/images/sparkle.png" id="3_px1ra"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tjdap"]
 height = 1.0
 radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px1ra"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_vq5qy")
+
+[sub_resource type="Curve" id="Curve_hgxsv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.509709, 0.550562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vq5qy"]
+curve = SubResource("Curve_hgxsv")
+
+[sub_resource type="Curve" id="Curve_o16qt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_px1ra"]
+curve = SubResource("Curve_o16qt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bg6sr"]
+resource_local_to_scene = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_px1ra")
+color = Color(0.172549, 0.380392, 1, 1)
+alpha_curve = SubResource("CurveTexture_vq5qy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_b86ub"]
+size = Vector2(6.5, 6.5)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgxsv"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_px1ra")
+
+[sub_resource type="Curve" id="Curve_ehoms"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.301932, 1), 0.0, 0.0, 0, 0, Vector2(0.736715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_o16qt"]
+curve = SubResource("Curve_ehoms")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3u7yp"]
+emission_shape_scale = Vector3(2.5, 2, 2.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0.5, 0)
+color = Color(0.176471, 0.768627, 1, 1)
+alpha_curve = SubResource("CurveTexture_o16qt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg6sr"]
 
 [node name="WaterSpot" type="Node3D"]
 script = ExtResource("1_28lgv")
@@ -15,3 +74,21 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CylinderShape3D_tjdap")
+
+[node name="WaveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+material_override = SubResource("StandardMaterial3D_px1ra")
+emitting = false
+amount = 2
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_bg6sr")
+draw_pass_1 = SubResource("QuadMesh_b86ub")
+
+[node name="SparkleParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_hgxsv")
+emitting = false
+lifetime = 1.5
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_3u7yp")
+draw_pass_1 = SubResource("QuadMesh_bg6sr")

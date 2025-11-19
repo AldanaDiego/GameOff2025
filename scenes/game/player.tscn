@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://ih7uiwkwxfw"]
+[gd_scene load_steps=34 format=3 uid="uid://ih7uiwkwxfw"]
 
 [ext_resource type="Script" uid="uid://dqud1a66373hr" path="res://scripts/game/player.gd" id="1_6w7gq"]
 [ext_resource type="PackedScene" uid="uid://b68tqywt7f6oh" path="res://assets/models/player/scorpion.glb" id="2_dd427"]
 [ext_resource type="Shader" uid="uid://c1cvhn0r63bnp" path="res://assets/shaders/liquid.gdshader" id="3_nybob"]
 [ext_resource type="PackedScene" uid="uid://4onjt8uqfnkd" path="res://assets/models/player/wheel.glb" id="3_u3rb4"]
 [ext_resource type="Script" uid="uid://bek8jvkf2t3sd" path="res://scripts/game/liquid.gd" id="4_68xwl"]
+[ext_resource type="Texture2D" uid="uid://caje231lgkiv3" path="res://assets/images/donut.png" id="6_wwvfn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3rb4"]
 friction = 0.5
@@ -72,6 +73,70 @@ color = Color(0.852826, 0.724319, 0.460868, 1)
 alpha_curve = SubResource("CurveTexture_wwvfn")
 
 [sub_resource type="SphereMesh" id="SphereMesh_m5ugi"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8yk2"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_wwvfn")
+
+[sub_resource type="Curve" id="Curve_m5ugi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.509709, 0.550562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ehoms"]
+curve = SubResource("Curve_m5ugi")
+
+[sub_resource type="Curve" id="Curve_3vq1g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3u7yp"]
+curve = SubResource("Curve_3vq1g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bnwh7"]
+resource_local_to_scene = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_3u7yp")
+color = Color(0.968627, 0.545098, 0.137255, 1)
+alpha_curve = SubResource("CurveTexture_ehoms")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dsw4c"]
+resource_local_to_scene = true
+size = Vector2(10, 10)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5ugi"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_bnwh7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.199029, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dsw4c"]
+curve = SubResource("Curve_bnwh7")
+
+[sub_resource type="Curve" id="Curve_0eoyi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262136, 0.606742), 0.0, 0.0, 0, 0, Vector2(0.849515, 0.617978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8egkn"]
+curve = SubResource("Curve_0eoyi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sia57"]
+emission_shape = 2
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -0.500002
+radial_accel_max = -0.500002
+scale_curve = SubResource("CurveTexture_8egkn")
+color = Color(1, 0.603922, 0.286275, 1)
+alpha_curve = SubResource("CurveTexture_dsw4c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_e605p"]
 radius = 0.1
 height = 0.2
 
@@ -204,5 +269,24 @@ damping_compression = 0.88
 
 [node name="CameraController" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4.5)
+
+[node name="RadarWaveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+material_override = SubResource("StandardMaterial3D_t8yk2")
+emitting = false
+amount = 2
+lifetime = 2.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_bnwh7")
+draw_pass_1 = SubResource("QuadMesh_dsw4c")
+
+[node name="RadarChargeParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39906, -0.124038)
+material_override = SubResource("StandardMaterial3D_m5ugi")
+emitting = false
+amount = 10
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_sia57")
+draw_pass_1 = SubResource("SphereMesh_e605p")
 
 [editable path="scorpion"]
