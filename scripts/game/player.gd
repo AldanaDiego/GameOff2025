@@ -28,6 +28,8 @@ var _radar_button_pressed: float
 var _radar_action_timer: Timer
 var _current_water_spot: WaterSpot
 var _speed_stage: int
+var _water_tank: float
+var _inner_temperature: float
 
 signal on_radar_used
 
@@ -40,6 +42,8 @@ func _ready() -> void:
     _radar_action_timer = GlobalTools.add_timer_node(self, RADAR_ACTION_DURATION)
     _current_water_spot = null
     _speed_stage = 0
+    _water_tank = 100.0
+    _inner_temperature = 0.0
 
 func _physics_process(delta) -> void:
     if Input.is_action_just_pressed("drill_menu_ok"):
@@ -146,3 +150,16 @@ func _start_radar_action() -> void:
 ## Updates references to WaterSpot when entering or leaving their Area3D
 func set_current_water_spot(spot: WaterSpot) -> void:
     _current_water_spot = spot
+
+## Gets current amount of water in player's tank
+func get_water_tank() -> float:
+    return _water_tank
+
+## Gets the current inner temperature of the player
+func get_inner_temperature() -> float:
+    return _inner_temperature
+
+## Update water consumption and inner temperature
+func update(world_temp: int) -> void:
+    pass #TODO
+

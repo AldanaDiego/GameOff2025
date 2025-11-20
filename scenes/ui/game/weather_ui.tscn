@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://g0e81vfdggov"]
+[gd_scene load_steps=6 format=3 uid="uid://g0e81vfdggov"]
 
 [ext_resource type="Script" uid="uid://bwvlpcyqe47v1" path="res://scripts/ui/game/weather_ui.gd" id="1_knna5"]
+[ext_resource type="FontFile" uid="uid://dsxvfo7ohmd7p" path="res://assets/fonts/Orbitron-VariableFont_wght.ttf" id="2_kdp2f"]
+[ext_resource type="Texture2D" uid="uid://cb8xevqsvtd8a" path="res://assets/images/sun_yellow.png" id="3_jtqwg"]
+[ext_resource type="Texture2D" uid="uid://bwhxt7svw50jv" path="res://assets/images/sun_white.png" id="3_yd3h1"]
+[ext_resource type="Texture2D" uid="uid://donh1eve8iiqt" path="res://assets/images/sun_red.png" id="4_xu0ti"]
 
 [node name="WeatherUI" type="Control"]
 layout_mode = 3
@@ -10,3 +14,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_knna5")
+_textures = Array[Texture]([ExtResource("3_yd3h1"), ExtResource("3_jtqwg"), ExtResource("4_xu0ti")])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 120.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("2_kdp2f")
+theme_override_font_sizes/font_size = 48
+text = "40 C°"
+horizontal_alignment = 2
+
+[node name="WeatherTexture" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("3_yd3h1")
+expand_mode = 3
