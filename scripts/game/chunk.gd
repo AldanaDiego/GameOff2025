@@ -28,6 +28,7 @@ func setup(props: Array[PackedScene]) -> void:
 	for i in range(WATER_SPOT_COUNT):
 		var water_spot = _water_spot_prefab.instantiate() as WaterSpot
 		water_spot.position = _generate_position()
+		water_spot.ready_to_delete.connect(_on_water_spot_delete)
 		_water_spots.append(water_spot)
 		add_child(water_spot)
 
@@ -68,3 +69,17 @@ func _generate_position() -> Vector3:
 				break
 
 	return pos
+
+## When a [class WaterSpot] is empty, delete and create a new one
+func _on_water_spot_delete(spot: WaterSpot) -> void:
+	var index: int = _water_spots.find(spot)
+	var pos: Vector3 = _generate_position()
+
+	_water_spots[index].ready_to_delete.disconnect(_on_water_spot_delete)
+	_water_spots[index].queue_free()
+
+	var new_spot = _water_spot_prefab.instantiate() as WaterSpot
+	new_spot.position = pos
+	new_spot.ready_to_delete.connect(_on_water_spot_delete)
+	_water_spots[index] = new_spot
+	add_child(new_spot)

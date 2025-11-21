@@ -15,6 +15,7 @@ const RADAR_ACTION_DURATION: float = 1.5
 enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 
 @export var _wheel_dust: Array[GPUParticles3D]
+@export var _water_tank_material: ShaderMaterial
 
 @onready var camera_controller: Node3D = $CameraController
 @onready var _animation: AnimationPlayer = $scorpion/AnimationPlayer
@@ -28,7 +29,7 @@ var _radar_button_pressed: float
 var _radar_action_timer: Timer
 var _current_water_spot: WaterSpot
 var _speed_stage: int
-var _water_tank: float
+var _water_tank_level: float
 var _inner_temperature: float
 
 signal on_radar_used
@@ -42,7 +43,7 @@ func _ready() -> void:
     _radar_action_timer = GlobalTools.add_timer_node(self, RADAR_ACTION_DURATION)
     _current_water_spot = null
     _speed_stage = 0
-    _water_tank = 100.0
+    _water_tank_level = 100.0
     _inner_temperature = 0.0
 
 func _physics_process(delta) -> void:
@@ -153,13 +154,32 @@ func set_current_water_spot(spot: WaterSpot) -> void:
 
 ## Gets current amount of water in player's tank
 func get_water_tank() -> float:
-    return _water_tank
+    return _water_tank_level
 
 ## Gets the current inner temperature of the player
 func get_inner_temperature() -> float:
     return _inner_temperature
 
 ## Update water consumption and inner temperature
-func update(world_temp: int) -> void:
-    pass #TODO
-
+func update(world_temp_level: int) -> void:
+    var water_consumption: float = 0.0
+    var temp_increase: float = 0.0
+    
+    if _current_water_spot != null and _current_water_spot.get_state() == WaterSpot.State.EXTRACTING:
+        water_consumption = -5
+        temp_increase = -5    
+    else:
+        water_consumption = (floori(_inner_temperature / 25) + 1) * (_speed_stage + 1) * 0.1
+        temp_increase = ((world_temp_level + 1) * (_speed_stage + 1) * 0.15) if world_temp_level < 2 else 3.5
+        
+    _water_tank_level = clampf(
+            _water_tank_level - water_consumption,
+            0.0,
+            100.0
+    )
+    _inner_temperature = clampf(
+        _inner_temperature + temp_increase,
+        0.0,
+        100.0
+    )
+    _water_tank_material.set_shader_parameter("liquid_height", _water_tank_level / 100.0)

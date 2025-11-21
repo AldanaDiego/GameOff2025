@@ -36,6 +36,6 @@ func _on_player_radar_used() -> void:
 ## Every second updates game behaviour
 func _on_tick() -> void:
     _weather.update()
-    _weather_ui.update(_weather.get_current_temperature())
-    _player.update(_weather.get_current_temperature())
+    _weather_ui.update(_weather.get_current_temperature(), _weather.get_current_temperature_level())
+    _player.update(_weather.get_current_temperature_level())
     _player_ui.update(_player.get_water_tank(), _player.get_inner_temperature())

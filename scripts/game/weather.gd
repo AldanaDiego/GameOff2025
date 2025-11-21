@@ -12,6 +12,7 @@ var _current_temperature: int
 var _cycles_since_last_heatwave: int
 var _cycles_since_temp_change: int
 var _last_temp_change: int
+var _temp_midpoint: int
 var _state: State
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
     _cycles_since_last_heatwave = 0
     _cycles_since_temp_change = 0
     _last_temp_change = 0
+    _temp_midpoint = (MAX_TEMP + MIN_TEMP) / 2
     _state = State.NORMAL
 
 ## Advance temperature cycle
@@ -111,3 +113,11 @@ func _temp_advance_post_heatwave() -> void:
 ## Gets the current world temperature
 func get_current_temperature() -> int:
     return _current_temperature
+
+## Returns a level representing the current temperature
+func get_current_temperature_level() -> int:
+    if _current_temperature < _temp_midpoint:
+        return 0
+    elif _current_temperature >= MAX_TEMP:
+        return 2
+    return 1
