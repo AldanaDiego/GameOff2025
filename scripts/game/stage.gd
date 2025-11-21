@@ -5,6 +5,7 @@ const MAP_WIDTH: int = 3
 const MAP_HEIGHT: int = 3
 
 @export var _chunk_prefab: PackedScene
+@export var _wall_prefab: PackedScene
 @export var _decoration_props: Array[PackedScene]
 
 var _chunks: Array[Chunk]
@@ -33,7 +34,22 @@ func _ready() -> void:
 			k += 1
 			_chunks.append(chunk)
 
+			if i == 0:
+				_spawn_wall(pos + Vector3((-Chunk.SIZE / 2) - 2.5, 0, 0), true)
+			elif i == MAP_WIDTH - 1:
+				_spawn_wall(pos + Vector3((Chunk.SIZE / 2) + 2.5, 0, 0), true)
+			if j == 0:
+				_spawn_wall(pos + Vector3(0, 0, (-Chunk.SIZE / 2) - 2.5), false)
+			elif j == MAP_HEIGHT - 1:
+				_spawn_wall(pos + Vector3(0, 0, (Chunk.SIZE / 2) + 2.5), false)
+
 	on_stage_ready.emit()
+
+func _spawn_wall(pos: Vector3, is_rotated: bool) -> void:
+	var wall = _wall_prefab.instantiate() as Node3D
+	wall.position = pos
+	wall.rotation_degrees.y = 90 if is_rotated else 0
+	add_child(wall)
 
 ## For each [class Chunk] reveal diggable spots that are at a certain distance from [param pos]
 func reveal_diggable_spots(pos: Vector3) -> void:

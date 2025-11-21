@@ -10,7 +10,7 @@
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sr1o"]
 sky_top_color = Color(0.0482045, 0.460435, 0.772808, 1)
 sky_horizon_color = Color(0.694379, 0.673321, 0.579247, 1)
-ground_bottom_color = Color(0.684998, 0.60362, 0.407771, 1)
+ground_bottom_color = Color(0.784314, 0.498039, 0.298039, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_kelw5"]
