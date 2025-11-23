@@ -19,6 +19,39 @@ rim_enabled = true
 rim = 0.89
 rim_tint = 0.66
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5ugi"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_bnwh7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.199029, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dsw4c"]
+curve = SubResource("Curve_bnwh7")
+
+[sub_resource type="Curve" id="Curve_0eoyi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262136, 0.606742), 0.0, 0.0, 0, 0, Vector2(0.849515, 0.617978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8egkn"]
+curve = SubResource("Curve_0eoyi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sia57"]
+emission_shape = 2
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -0.500002
+radial_accel_max = -0.500002
+scale_curve = SubResource("CurveTexture_8egkn")
+color = Color(1, 0.603922, 0.286275, 1)
+alpha_curve = SubResource("CurveTexture_dsw4c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_e605p"]
+radius = 0.1
+height = 0.2
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_68xwl"]
 radius = 0.75
 height = 3.0
@@ -88,39 +121,6 @@ resource_local_to_scene = true
 size = Vector2(10, 10)
 orientation = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5ugi"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="Curve" id="Curve_bnwh7"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.199029, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_dsw4c"]
-curve = SubResource("Curve_bnwh7")
-
-[sub_resource type="Curve" id="Curve_0eoyi"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.262136, 0.606742), 0.0, 0.0, 0, 0, Vector2(0.849515, 0.617978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_8egkn"]
-curve = SubResource("Curve_0eoyi")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sia57"]
-emission_shape = 2
-emission_sphere_radius = 0.5
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -0.500002
-radial_accel_max = -0.500002
-scale_curve = SubResource("CurveTexture_8egkn")
-color = Color(1, 0.603922, 0.286275, 1)
-alpha_curve = SubResource("CurveTexture_dsw4c")
-
-[sub_resource type="SphereMesh" id="SphereMesh_e605p"]
-radius = 0.1
-height = 0.2
-
 [node name="Player" type="VehicleBody3D" node_paths=PackedStringArray("_wheel_dust") groups=["Player"]]
 physics_material_override = SubResource("PhysicsMaterial_u3rb4")
 center_of_mass_mode = 1
@@ -132,40 +132,41 @@ _water_tank_material = ExtResource("2_wwvfn")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.309663, -0.0925105)
 
 [node name="Skeleton3D" parent="scorpion/Armature" index="0"]
-bones/0/position = Vector3(0, -0.00474219, 0)
-bones/1/rotation = Quaternion(-0.378298, 0.000640099, -0.00025251, 0.925683)
-bones/2/rotation = Quaternion(0.25897, 2.21641e-10, 8.60297e-11, 0.965885)
-bones/3/rotation = Quaternion(0.420768, -3.24452e-07, -1.50463e-07, 0.907168)
-bones/4/rotation = Quaternion(0.248231, -3.46502e-07, -2.66429e-07, 0.968701)
-bones/5/rotation = Quaternion(0.118627, 1.53881e-06, 1.41211e-08, 0.992939)
-bones/6/rotation = Quaternion(0.127255, -8.2768e-07, 1.06219e-07, 0.99187)
-bones/7/rotation = Quaternion(0.707427, 0.423717, 0.430025, -0.367545)
-bones/8/rotation = Quaternion(-0.1297, -0.0100198, -0.302728, 0.944157)
-bones/9/rotation = Quaternion(-0.067893, 0.052973, -0.247359, 0.96509)
-bones/10/rotation = Quaternion(0.0105985, 0.306773, -0.247206, 0.919058)
-bones/11/rotation = Quaternion(0.682123, -0.433011, -0.439547, -0.39244)
-bones/12/rotation = Quaternion(-0.1297, 0.0100198, 0.302728, 0.944157)
-bones/13/rotation = Quaternion(-0.067893, -0.052973, 0.247359, 0.96509)
-bones/14/rotation = Quaternion(0.0105983, -0.306773, 0.247202, 0.919059)
-bones/15/rotation = Quaternion(1.00406e-07, 4.94948e-08, -0.501568, 0.865118)
-bones/16/rotation = Quaternion(1.61251e-07, 1.58656e-07, -0.508287, 0.861188)
-bones/17/rotation = Quaternion(1.15476e-07, 5.4402e-08, -0.342722, 0.939437)
-bones/18/rotation = Quaternion(-7.4531e-09, -6.25083e-08, 0.501568, 0.865118)
-bones/19/rotation = Quaternion(1.61251e-07, -1.58656e-07, 0.508287, 0.861188)
-bones/20/rotation = Quaternion(1.15476e-07, -5.4402e-08, 0.342722, 0.939437)
-bones/21/rotation = Quaternion(6.16212e-08, -7.16481e-09, -0.524786, 0.851234)
-bones/22/rotation = Quaternion(1.87199e-08, -5.131e-08, -0.435935, 0.899978)
-bones/23/rotation = Quaternion(2.11121e-08, 6.51747e-08, -0.375356, 0.926881)
-bones/24/rotation = Quaternion(-1.85644e-08, 8.6078e-09, 0.524786, 0.851234)
-bones/25/rotation = Quaternion(1.87199e-08, 5.131e-08, 0.435935, 0.899978)
-bones/26/rotation = Quaternion(2.11121e-08, -6.51747e-08, 0.375356, 0.926881)
-bones/27/position = Vector3(1.25279, 0.292443, 1.21251)
+bones/1/rotation = Quaternion(-0.378436, 0.0104196, -0.00409373, 0.92556)
+bones/2/rotation = Quaternion(0.258777, 7.35011e-10, -4.3134e-11, 0.965937)
+bones/3/rotation = Quaternion(0.421397, -3.25267e-07, -1.50326e-07, 0.906876)
+bones/4/rotation = Quaternion(0.2492, -3.47147e-07, -2.66095e-07, 0.968452)
+bones/5/rotation = Quaternion(0.119487, 1.53854e-06, 1.44815e-08, 0.992836)
+bones/6/rotation = Quaternion(0.127946, -8.28339e-07, 1.06236e-07, 0.991781)
+bones/7/rotation = Quaternion(0.701271, 0.438737, 0.441075, -0.348111)
+bones/8/rotation = Quaternion(-0.12734, -0.0102171, -0.296908, 0.946322)
+bones/9/rotation = Quaternion(-0.0632745, 0.0531396, -0.232875, 0.96899)
+bones/10/rotation = Quaternion(0.00982328, 0.307832, -0.234462, 0.922047)
+bones/11/rotation = Quaternion(0.676004, -0.447987, -0.450641, -0.373161)
+bones/12/rotation = Quaternion(-0.127341, 0.0102171, 0.296908, 0.946322)
+bones/13/rotation = Quaternion(-0.0632745, -0.0531396, 0.232875, 0.96899)
+bones/14/rotation = Quaternion(0.00982328, -0.307832, 0.234462, 0.922047)
+bones/15/rotation = Quaternion(1.00343e-07, 4.93838e-08, -0.508282, 0.861191)
+bones/16/rotation = Quaternion(1.60772e-07, 1.59124e-07, -0.506103, 0.862473)
+bones/17/rotation = Quaternion(1.13841e-07, 5.46403e-08, -0.339205, 0.940712)
+bones/18/rotation = Quaternion(-7.52852e-09, -6.22933e-08, 0.508282, 0.861191)
+bones/19/rotation = Quaternion(1.60772e-07, -1.59124e-07, 0.506103, 0.862473)
+bones/20/rotation = Quaternion(1.13841e-07, -5.46403e-08, 0.339205, 0.940712)
+bones/21/rotation = Quaternion(6.2314e-08, -7.13623e-09, -0.53023, 0.847854)
+bones/22/rotation = Quaternion(1.86409e-08, -5.13607e-08, -0.434096, 0.900867)
+bones/23/rotation = Quaternion(2.09684e-08, 6.52472e-08, -0.372801, 0.927911)
+bones/24/rotation = Quaternion(-1.78722e-08, 8.54478e-09, 0.53023, 0.847854)
+bones/25/rotation = Quaternion(1.86409e-08, 5.13607e-08, 0.434096, 0.900867)
+bones/26/rotation = Quaternion(2.09684e-08, -6.52472e-08, 0.372801, 0.927911)
+bones/27/position = Vector3(1.25279, 0.300866, 1.23271)
 bones/28/position = Vector3(-1.19209e-07, -1.19209e-07, 2.98023e-08)
-bones/30/position = Vector3(-1.25279, 0.292443, 1.21251)
+bones/29/position = Vector3(1.07739, 0.478511, 0.179756)
+bones/30/position = Vector3(-1.25279, 0.300866, 1.23271)
 bones/31/position = Vector3(0, 0, 5.96046e-08)
+bones/32/position = Vector3(-1.07739, 0.478511, 0.179756)
 bones/36/rotation = Quaternion(0.113266, 0.697976, -0.697976, -0.113266)
 bones/42/rotation = Quaternion(0.127194, 0.695573, -0.695573, -0.127194)
-bones/45/position = Vector3(0.00209173, 2.02571, -0.456182)
+bones/45/position = Vector3(0.0340744, 2.02571, -0.456182)
 
 [node name="Tank" parent="scorpion/Armature/Skeleton3D" index="6"]
 material_override = SubResource("StandardMaterial3D_68xwl")
@@ -177,6 +178,20 @@ max_wobble = 0.03
 movement_to_max_wobble = 1.0
 wobble_damping = 0.5
 wobble_speed = 1.0
+
+[node name="RadarBone" type="BoneAttachment3D" parent="scorpion/Armature/Skeleton3D" index="8"]
+transform = Transform3D(1, 4.26326e-14, 4.76836e-07, 4.73228e-07, -0.122793, -0.992432, 5.85519e-08, 0.992432, -0.122793, 0.0340744, 2.02571, -0.456182)
+bone_name = "Radar"
+bone_idx = 46
+
+[node name="RadarChargeParticles" type="GPUParticles3D" parent="scorpion/Armature/Skeleton3D/RadarBone"]
+transform = Transform3D(1, -3.55271e-15, 1.58096e-13, 0, 1, -2.98023e-08, -1.19904e-14, 2.98023e-08, 1, 3.84181e-08, 0.65117, -0.080569)
+material_override = SubResource("StandardMaterial3D_m5ugi")
+emitting = false
+amount = 10
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_sia57")
+draw_pass_1 = SubResource("SphereMesh_e605p")
 
 [node name="AnimationPlayer" parent="scorpion" index="1"]
 autoplay = "Idle"
@@ -261,14 +276,5 @@ lifetime = 2.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_bnwh7")
 draw_pass_1 = SubResource("QuadMesh_dsw4c")
-
-[node name="RadarChargeParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39906, -0.124038)
-material_override = SubResource("StandardMaterial3D_m5ugi")
-emitting = false
-amount = 10
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_sia57")
-draw_pass_1 = SubResource("SphereMesh_e605p")
 
 [editable path="scorpion"]
