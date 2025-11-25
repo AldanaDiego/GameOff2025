@@ -2,6 +2,7 @@ extends Node
 ## Contains all constants used globally through the game
 
 enum State { ACTIVE, HIDDEN, BUSY, IDLE }
+enum TempDisplay { CELCIUS, FAHRENHEIT }
 
 const CONFIG_SECTION_KEYBOARD = "Keyboard"
 const CONFIG_SECTION_CONTROLLER = "Controller"

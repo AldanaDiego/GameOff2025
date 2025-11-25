@@ -9,10 +9,13 @@ const BETWEEN_HEATWAVE_DURATION: int = 10
 
 enum State { NORMAL, PRE_HEATWAVE, HEATWAVE, POST_HEATWAVE}
 
+@onready var _light: DirectionalLight3D = $Light
+
 var _current_temperature: int
 var _cycles_since_last_heatwave: int
 var _cycles_since_temp_change: int
 var _last_temp_change: int
+var _last_temp_level: int
 var _temp_midpoint: int
 var _state: State
 
@@ -21,6 +24,7 @@ func _ready() -> void:
     _cycles_since_last_heatwave = 0
     _cycles_since_temp_change = 0
     _last_temp_change = 0
+    _last_temp_level = 0
     _temp_midpoint = roundi((MAX_TEMP + MIN_TEMP) / 2.0)
     _state = State.NORMAL
 
@@ -35,6 +39,27 @@ func update() -> void:
             _temp_advance_heatwave()
         State.POST_HEATWAVE:
             _temp_advance_post_heatwave()
+
+    var temp_level: int = get_current_temperature_level()
+    if _last_temp_level != temp_level:
+        _last_temp_level = temp_level
+        var target_color: Color
+        var target_rotation: Vector3
+        match temp_level:
+            0:
+                target_color = Color.WHITE
+                target_rotation = Vector3(-80, -90, 90)
+            1:
+                target_color = Color(1, 0.8, 0.8)
+                target_rotation = Vector3(-85, -90, 90)
+            2:
+                target_color = Color(1, 0.6, 0.6)
+                target_rotation = Vector3(-90, -90, 90)
+
+        var tween: Tween = create_tween()
+        tween.tween_property(_light, "light_color", target_color, Game.TICK).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+        tween.parallel().tween_property(_light, "rotation_degrees", target_rotation, Game.TICK).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+        
 
 ## Changes temperature with weighted probability
 func _temp_advance_normal() -> void:

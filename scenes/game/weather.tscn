@@ -4,3 +4,6 @@
 
 [node name="Weather" type="Node3D"]
 script = ExtResource("1_74chp")
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 4.37114e-08, -4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 0, 20, 0)

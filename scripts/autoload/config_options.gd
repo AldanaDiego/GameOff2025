@@ -21,6 +21,14 @@ var _settings := {
 				"es": "SETTINGS_OPTION_LANGUAGE_SPANISH"
 			},
 			"default": "en"
+		},
+		"TempDisplay": {
+			"type": OptionType.SELECT,
+			"options": {
+				GlobalConstants.TempDisplay.CELCIUS: "Celcius",
+				GlobalConstants.TempDisplay.FAHRENHEIT: "Fahrenheit"
+			},
+			"default": GlobalConstants.TempDisplay.CELCIUS
 		}
 	},
 	"Audio": {
