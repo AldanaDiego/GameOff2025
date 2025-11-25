@@ -27,6 +27,7 @@ var _drill_action_timer: Timer
 var _radar_button_pressed: float
 var _radar_action_timer: Timer
 var _current_water_spot: WaterSpot
+var _current_hideout: Hideout
 var _speed_stage: int
 var _water_tank_level: float
 var _inner_temperature: float
@@ -41,6 +42,7 @@ func _ready() -> void:
     _drill_action_timer = GlobalTools.add_timer_node(self, DRILL_ACTION_DURATION)
     _radar_action_timer = GlobalTools.add_timer_node(self, RADAR_ACTION_DURATION)
     _current_water_spot = null
+    _current_hideout = null
     _speed_stage = 0
     _water_tank_level = 100.0
     _inner_temperature = 0.0
@@ -148,6 +150,10 @@ func _start_radar_action() -> void:
 func set_current_water_spot(spot: WaterSpot) -> void:
     _current_water_spot = spot
 
+## Updates references to Hideout when entering or leaving their Area3D
+func set_current_hideout(hideout: Hideout) -> void:
+    _current_hideout = hideout
+
 ## Gets current amount of water in player's tank
 func get_water_tank() -> float:
     return _water_tank_level
@@ -163,7 +169,10 @@ func update(world_temp_level: int) -> void:
     
     if _current_water_spot != null and _current_water_spot.get_state() == WaterSpot.State.EXTRACTING:
         water_consumption = -5
-        temp_increase = -5    
+        temp_increase = -5
+    elif _current_hideout != null:
+        water_consumption = (floori(_inner_temperature / 25) + 1) * (_speed_stage + 1) * 0.1
+        temp_increase = -1.0 if world_temp_level < 2 else -0.5
     else:
         water_consumption = (floori(_inner_temperature / 25) + 1) * (_speed_stage + 1) * 0.1
         temp_increase = ((world_temp_level + 1) * (_speed_stage + 1) * 0.15) if world_temp_level < 2 else 3.5

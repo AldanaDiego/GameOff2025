@@ -9,8 +9,8 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
     if body.is_in_group("Player"):
-        pass #TODO tree area monitor player
+        (body as Player).set_current_hideout(self)
 
 func _on_body_exited(body: Node3D) -> void:
     if body.is_in_group("Player"):
-        pass #TODO tree area monitor player
+        (body as Player).set_current_hideout(null)

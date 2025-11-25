@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxibfkingkd6"]
+[gd_scene load_steps=9 format=3 uid="uid://bxibfkingkd6"]
 
 [ext_resource type="Script" uid="uid://ck52uhic4tk4y" path="res://scripts/game/stage.gd" id="1_divbv"]
 [ext_resource type="PackedScene" uid="uid://s47pl5eayam1" path="res://scenes/game/chunk.tscn" id="2_spkqr"]
@@ -7,12 +7,13 @@
 [ext_resource type="ArrayMesh" uid="uid://dveqac8qy12k6" path="res://assets/models/props/kaykit_spacebits/landingpad_large.obj" id="3_y6o0k"]
 [ext_resource type="PackedScene" uid="uid://bu7eb1no53jxr" path="res://scenes/game/decorations/cactus.tscn" id="4_3rcj3"]
 [ext_resource type="PackedScene" uid="uid://ca5qkji3ga8qc" path="res://scenes/game/decorations/big_rock.tscn" id="4_6j5lw"]
+[ext_resource type="PackedScene" uid="uid://4uvspekxsbj" path="res://scenes/game/decorations/palm_tree.tscn" id="6_q02w4"]
 
 [node name="Stage" type="Node3D"]
 script = ExtResource("1_divbv")
 _chunk_prefab = ExtResource("2_spkqr")
 _wall_prefab = ExtResource("3_35hml")
-_decoration_props = Array[PackedScene]([ExtResource("3_xcc28"), ExtResource("3_xcc28"), ExtResource("3_xcc28"), ExtResource("4_3rcj3"), ExtResource("4_3rcj3"), ExtResource("4_6j5lw"), ExtResource("4_6j5lw"), ExtResource("4_6j5lw")])
+_decoration_props = Array[PackedScene]([ExtResource("3_xcc28"), ExtResource("3_xcc28"), ExtResource("4_3rcj3"), ExtResource("4_3rcj3"), ExtResource("6_q02w4"), ExtResource("6_q02w4"), ExtResource("4_6j5lw"), ExtResource("4_6j5lw")])
 
 [node name="CenterChunk" parent="." instance=ExtResource("2_spkqr")]
 

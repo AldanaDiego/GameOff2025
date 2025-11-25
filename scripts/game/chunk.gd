@@ -21,7 +21,10 @@ func _ready() -> void:
 func setup(props: Array[PackedScene]) -> void:
 	for i in range(HIDEOUT_COUNT):
 		var hideout = _hideout_prefab.instantiate() as Hideout
-		hideout.position = _generate_position()
+		if i == 0:
+			hideout.position = Vector3.ZERO
+		else:
+			hideout.position = _generate_position()
 		_hideouts.append(hideout)
 		add_child(hideout)
 
