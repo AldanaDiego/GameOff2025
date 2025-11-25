@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oap8i")
-_sections = [NodePath("Programming"), NodePath("3D")]
+_sections = [NodePath("Programming"), NodePath("3D"), NodePath("MusicVFX")]
 
 [node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -64,6 +64,26 @@ auto_translate_mode = 2
 layout_mode = 2
 text = "Toson Devypr
 Kay Lousberg"
+horizontal_alignment = 1
+
+[node name="MusicVFX" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 134.953
+offset_right = 1142.0
+offset_bottom = 210.953
+
+[node name="Title" type="Label" parent="MusicVFX"]
+layout_mode = 2
+text = "CREDITS_TITLE_MUSIC"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="MusicVFX"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Clement Panchout
+JDSherbert
+Helton Yan"
 horizontal_alignment = 1
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]

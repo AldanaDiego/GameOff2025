@@ -16,10 +16,15 @@ enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 
 @export var _wheel_dust: Array[GPUParticles3D]
 @export var _water_tank_material: ShaderMaterial
+@export var _drill_sfx: AudioStream
+@export var _radar_ping_sfx: AudioStream
 
 @onready var camera_controller: Node3D = $CameraController
 @onready var _animation: AnimationPlayer = $scorpion/AnimationPlayer
 @onready var _radar_wave_vfx: GPUParticles3D = $RadarWaveParticles
+@onready var _drill_particles_left: GPUParticles3D = $DrillParticlesLeft
+@onready var _drill_particles_right: GPUParticles3D = $DrillParticlesRight
+@onready var _sfx: SfxPlayer = $SfxPlayer
 
 var _state: PlayerState
 var _drill_button_pressed: float
@@ -121,6 +126,9 @@ func _start_drill_action() -> void:
     _state = PlayerState.DRILL
     _animation.play("Drill")
     linear_velocity = Vector3.ZERO
+    _sfx.play_sfx(_drill_sfx, -10)
+    _drill_particles_left.emitting = true
+    _drill_particles_right.emitting = true
     
     _drill_action_timer.start()
     await _drill_action_timer.timeout
@@ -128,6 +136,8 @@ func _start_drill_action() -> void:
     if _current_water_spot != null:
         _current_water_spot.extract()
     brake = 0
+    _drill_particles_left.emitting = false
+    _drill_particles_right.emitting = false
     _animation.play("Idle")
     _state = PlayerState.IDLE
 
@@ -137,6 +147,7 @@ func _start_radar_action() -> void:
     _animation.play("Idle")
     linear_velocity = Vector3.ZERO
     _radar_wave_vfx.emitting = true
+    _sfx.play_sfx(_radar_ping_sfx)
     
     _radar_action_timer.start()
     await _radar_action_timer.timeout

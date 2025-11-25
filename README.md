@@ -16,3 +16,6 @@ Game made in Godot for Github Game Off Jam 2025
 ### Art and UI
 
 ### Music and SFX
+- [Free Music Pack](https://clement-panchout.itch.io/yet-another-free-music-pack) by Clement Panchout
+- [Ambiences Music Pack](https://jdsherbert.itch.io/ambiences-music-pack) by JDSherbert
+- [Old School Shonen SFX](https://heltonyan.itch.io/retroanimesfx) by Helton Yan
