@@ -1,24 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://lsegrykfv1ap"]
+[gd_scene load_steps=9 format=3 uid="uid://lsegrykfv1ap"]
 
 [ext_resource type="Script" uid="uid://blaskxyf3wgol" path="res://scripts/game/game.gd" id="1_6eho4"]
 [ext_resource type="PackedScene" uid="uid://ih7uiwkwxfw" path="res://scenes/game/player.tscn" id="2_7h61r"]
+[ext_resource type="Sky" uid="uid://b3lloh0qp2vi6" path="res://assets/materials/sky.tres" id="2_bdhmt"]
 [ext_resource type="PackedScene" uid="uid://bxibfkingkd6" path="res://scenes/game/stage.tscn" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://b62xhn2js0lry" path="res://scenes/game/weather.tscn" id="4_5i0tg"]
 [ext_resource type="PackedScene" uid="uid://c54j2cgot4p2i" path="res://scenes/ui/game/player_ui.tscn" id="4_kelw5"]
 [ext_resource type="PackedScene" uid="uid://g0e81vfdggov" path="res://scenes/ui/game/weather_ui.tscn" id="5_lfrn8"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0sr1o"]
-sky_top_color = Color(0.0482045, 0.460435, 0.772808, 1)
-sky_horizon_color = Color(0.694379, 0.673321, 0.579247, 1)
-ground_bottom_color = Color(0.784314, 0.498039, 0.298039, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_kelw5"]
-sky_material = SubResource("ProceduralSkyMaterial_0sr1o")
-
 [sub_resource type="Environment" id="Environment_lfrn8"]
 background_mode = 2
-sky = SubResource("Sky_kelw5")
+sky = ExtResource("2_bdhmt")
 ambient_light_source = 2
 ambient_light_color = Color(0.344076, 0.344076, 0.344076, 1)
 tonemap_mode = 2

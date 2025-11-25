@@ -16,6 +16,7 @@ enum State { TITLE_SCREEN, IN_TRANSITION, IN_GAME}
 @onready var _credits: Credits = $Credits
 @onready var _music: MusicManager = $MusicManager
 @onready var _scene_transition = $SceneTransition
+@onready var _title_scene: TitleScene = $TitleScene
 
 var _game_scene_prefab = preload("res://scenes/game/game.tscn")
 var _game_scene: Game
@@ -34,6 +35,8 @@ func _ready() -> void:
 	_title_screen.on_exit_pressed.connect(_exit_game)
 	_settings_menu.on_save_pressed.connect(_hide_settings_menu)
 	_credits.on_back_pressed.connect(_hide_credits)
+	_music.set_stream(_music.title_screen_music)
+	_music.fade_in(3)
 
 ## Transitions from title screen to main game scene
 func _start_game() -> void:
@@ -43,9 +46,10 @@ func _start_game() -> void:
 		await _scene_transition.fade_in()
 		_title_screen.queue_free()
 		_settings_menu.queue_free()
+		_title_scene.queue_free()
 		_load_game_scene()
 
-		#TODO change _music
+		_music.set_stream(_music.game_music)
 		_music.fade_in(3)
 		_scene_transition.fade_out()
 		_state = State.IN_GAME

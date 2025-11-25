@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://uq0gbxgi84n1"]
+[gd_scene load_steps=9 format=3 uid="uid://uq0gbxgi84n1"]
 
 [ext_resource type="Script" uid="uid://c7l3pwjpemwjt" path="res://scripts/main/scene_manager.gd" id="1_3v6rs"]
 [ext_resource type="Theme" uid="uid://d4bhotf5ve6u2" path="res://assets/ui_themes/main_theme.tres" id="1_gi3w8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bg6uceryo1qvn" path="res://scenes/ui/settings_menu.tscn" id="3_xbmyo"]
 [ext_resource type="PackedScene" uid="uid://bigraq2e5mqxi" path="res://scenes/ui/scene_transition.tscn" id="4_lw7li"]
 [ext_resource type="PackedScene" uid="uid://bmtw0wo7ao3ry" path="res://scenes/ui/credits.tscn" id="5_oqj5w"]
+[ext_resource type="PackedScene" uid="uid://dbqa1uxe2h33a" path="res://scenes/main/title_scene.tscn" id="8_p14to"]
 
 [node name="SceneManager" type="Control"]
 layout_mode = 3
@@ -32,3 +33,5 @@ layout_mode = 1
 [node name="MusicManager" parent="." instance=ExtResource("2_q52ac")]
 
 [node name="SceneTransition" parent="." instance=ExtResource("4_lw7li")]
+
+[node name="TitleScene" parent="." instance=ExtResource("8_p14to")]

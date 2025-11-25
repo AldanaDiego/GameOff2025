@@ -1,6 +1,9 @@
 class_name MusicManager extends Node
 ## Manages the _music in the game
 
+@export var title_screen_music: AudioStream
+@export var game_music: AudioStream
+
 @onready var _music: AudioStreamPlayer = $Music
 
 var _timer: Timer

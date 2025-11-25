@@ -44,7 +44,7 @@ func _ready() -> void:
     _current_water_spot = null
     _current_hideout = null
     _speed_stage = 0
-    _water_tank_level = 100.0
+    set_water_tank(50.0)
     _inner_temperature = 0.0
 
 func _physics_process(delta) -> void:
@@ -158,9 +158,18 @@ func set_current_hideout(hideout: Hideout) -> void:
 func get_water_tank() -> float:
     return _water_tank_level
 
+## Sets current amount of water in player's tank
+func set_water_tank(new_level: float) -> void:
+    _water_tank_level = clampf(new_level, 0.0, 100.0)
+    _water_tank_material.set_shader_parameter("liquid_height", _water_tank_level / 100.0)
+
 ## Gets the current inner temperature of the player
 func get_inner_temperature() -> float:
     return _inner_temperature
+
+## Sets the player state
+func set_state(new_state: PlayerState) -> void:
+    _state = new_state
 
 ## Update water consumption and inner temperature
 func update(world_temp_level: int) -> void:

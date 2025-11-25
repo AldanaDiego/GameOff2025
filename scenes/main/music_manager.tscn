@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://8tkrd4ihac7d"]
+[gd_scene load_steps=4 format=3 uid="uid://8tkrd4ihac7d"]
 
 [ext_resource type="Script" uid="uid://cigi5krhqxqw0" path="res://scripts/main/music_manager.gd" id="1_fc8cn"]
+[ext_resource type="AudioStream" uid="uid://nl3hjhxqkx3m" path="res://assets/music/title.wav" id="2_g082p"]
+[ext_resource type="AudioStream" uid="uid://daotno65d3anr" path="res://assets/music/game.wav" id="3_g082p"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_fc8cn")
+title_screen_music = ExtResource("2_g082p")
+game_music = ExtResource("3_g082p")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 bus = &"Music"

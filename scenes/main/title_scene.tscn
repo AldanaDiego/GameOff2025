@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://dbqa1uxe2h33a"]
+
+[ext_resource type="Script" uid="uid://dp3xl5gc3ldj" path="res://scripts/main/title_scene.gd" id="1_0umwg"]
+[ext_resource type="PackedScene" uid="uid://s47pl5eayam1" path="res://scenes/game/chunk.tscn" id="2_mswmy"]
+[ext_resource type="Sky" uid="uid://b3lloh0qp2vi6" path="res://assets/materials/sky.tres" id="2_sxkgi"]
+[ext_resource type="PackedScene" uid="uid://ih7uiwkwxfw" path="res://scenes/game/player.tscn" id="3_sxkgi"]
+
+[sub_resource type="Environment" id="Environment_sxkgi"]
+background_mode = 2
+sky = ExtResource("2_sxkgi")
+ambient_light_source = 2
+ambient_light_color = Color(0.345098, 0.345098, 0.345098, 1)
+tonemap_mode = 2
+
+[sub_resource type="Curve" id="Curve_m5ugi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.509709, 0.550562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ehoms"]
+curve = SubResource("Curve_m5ugi")
+
+[sub_resource type="Curve" id="Curve_3vq1g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3u7yp"]
+curve = SubResource("Curve_3vq1g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0umwg"]
+resource_local_to_scene = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_3u7yp")
+color = Color(0.968627, 0.545098, 0.137255, 1)
+alpha_curve = SubResource("CurveTexture_ehoms")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mswmy"]
+resource_local_to_scene = true
+size = Vector2(10, 10)
+orientation = 1
+
+[node name="TitleScene" type="Node3D"]
+script = ExtResource("1_0umwg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.483282, -0.681324, 0.549759, 0, 0.627963, 0.778243, -0.875464, -0.376111, 0.303484, 0, 0, 0)
+light_color = Color(0.687215, 0.687215, 0.687215, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sxkgi")
+
+[node name="Chunk" parent="." instance=ExtResource("2_mswmy")]
+
+[node name="Player" parent="." instance=ExtResource("3_sxkgi")]
+transform = Transform3D(0.246999, 0, 0.969016, 0, 1, 0, -0.969016, 0, 0.246999, -3, 0, 0)
+
+[node name="Skeleton3D" parent="Player/scorpion/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.378436, 0.0104196, -0.00409373, 0.92556)
+bones/2/rotation = Quaternion(0.258777, 7.35011e-10, -4.3134e-11, 0.965937)
+bones/3/rotation = Quaternion(0.421397, -3.25267e-07, -1.50326e-07, 0.906876)
+bones/4/rotation = Quaternion(0.2492, -3.47147e-07, -2.66095e-07, 0.968452)
+bones/5/rotation = Quaternion(0.119487, 1.53854e-06, 1.44815e-08, 0.992836)
+bones/6/rotation = Quaternion(0.127946, -8.28339e-07, 1.06236e-07, 0.991781)
+bones/7/rotation = Quaternion(0.701271, 0.438737, 0.441075, -0.348111)
+bones/8/rotation = Quaternion(-0.12734, -0.0102171, -0.296908, 0.946322)
+bones/9/rotation = Quaternion(-0.0632745, 0.0531396, -0.232875, 0.96899)
+bones/10/rotation = Quaternion(0.00982328, 0.307832, -0.234462, 0.922047)
+bones/11/rotation = Quaternion(0.676004, -0.447987, -0.450641, -0.373161)
+bones/12/rotation = Quaternion(-0.127341, 0.0102171, 0.296908, 0.946322)
+bones/13/rotation = Quaternion(-0.0632745, -0.0531396, 0.232875, 0.96899)
+bones/14/rotation = Quaternion(0.00982328, -0.307832, 0.234462, 0.922047)
+bones/15/rotation = Quaternion(1.00343e-07, 4.93838e-08, -0.508282, 0.861191)
+bones/16/rotation = Quaternion(1.60772e-07, 1.59124e-07, -0.506103, 0.862473)
+bones/17/rotation = Quaternion(1.13841e-07, 5.46403e-08, -0.339205, 0.940712)
+bones/18/rotation = Quaternion(-7.52852e-09, -6.22933e-08, 0.508282, 0.861191)
+bones/19/rotation = Quaternion(1.60772e-07, -1.59124e-07, 0.506103, 0.862473)
+bones/20/rotation = Quaternion(1.13841e-07, -5.46403e-08, 0.339205, 0.940712)
+bones/21/rotation = Quaternion(6.2314e-08, -7.13623e-09, -0.53023, 0.847854)
+bones/22/rotation = Quaternion(1.86409e-08, -5.13607e-08, -0.434096, 0.900867)
+bones/23/rotation = Quaternion(2.09684e-08, 6.52472e-08, -0.372801, 0.927911)
+bones/24/rotation = Quaternion(-1.78722e-08, 8.54478e-09, 0.53023, 0.847854)
+bones/25/rotation = Quaternion(1.86409e-08, 5.13607e-08, 0.434096, 0.900867)
+bones/26/rotation = Quaternion(2.09684e-08, -6.52472e-08, 0.372801, 0.927911)
+bones/27/position = Vector3(1.25279, 0.300866, 1.23271)
+bones/28/position = Vector3(-1.19209e-07, -1.19209e-07, 2.98023e-08)
+bones/29/position = Vector3(1.07739, 0.478511, 0.179756)
+bones/30/position = Vector3(-1.25279, 0.300866, 1.23271)
+bones/31/position = Vector3(0, 0, 5.96046e-08)
+bones/32/position = Vector3(-1.07739, 0.478511, 0.179756)
+bones/36/rotation = Quaternion(0.113266, 0.697976, -0.697976, -0.113266)
+bones/42/rotation = Quaternion(0.127194, 0.695573, -0.695573, -0.127194)
+bones/45/position = Vector3(0.0340744, 2.02571, -0.456182)
+
+[node name="RadarBone" parent="Player/scorpion/Armature/Skeleton3D" index="8"]
+transform = Transform3D(1, 4.26326e-14, 4.76836e-07, 4.73228e-07, -0.122793, -0.992432, 5.85519e-08, 0.992432, -0.122793, 0.0340744, 2.02571, -0.456182)
+
+[node name="RadarWaveParticles" parent="Player" index="7"]
+process_material = SubResource("ParticleProcessMaterial_0umwg")
+draw_pass_1 = SubResource("QuadMesh_mswmy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+
+[editable path="Player"]
+[editable path="Player/scorpion"]

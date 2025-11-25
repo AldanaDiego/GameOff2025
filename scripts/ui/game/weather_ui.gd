@@ -9,6 +9,7 @@ var _current_texture: int
 
 func _ready() -> void:
     _current_texture = 0
+    _label.text = str(Weather.START_TEMP) + " C°"
 
 func update(temp: int, temp_level: int) -> void:
     _label.text = str(temp) + " C°"

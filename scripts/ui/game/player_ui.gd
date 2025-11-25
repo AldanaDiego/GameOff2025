@@ -10,9 +10,9 @@ var _target_temp: float
 var _acc_delta: float
 
 func _ready() -> void:
-    _water_ui.value = 100.0
-    _last_water = 100.0
-    _target_water = 100.0
+    _water_ui.value = 50.0
+    _last_water = 50.0
+    _target_water = 50.0
     _temperature_ui.value = 0.0
     _last_temp = 0.0
     _target_temp = 0.0

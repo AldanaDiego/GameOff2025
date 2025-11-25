@@ -3,6 +3,7 @@ class_name Weather extends Node3D
 
 const MIN_TEMP: int = 40
 const MAX_TEMP: int = 60
+const START_TEMP: int = 45
 const HEATWAVE_DURATION: int = 10
 const BETWEEN_HEATWAVE_DURATION: int = 10
 
@@ -16,11 +17,11 @@ var _temp_midpoint: int
 var _state: State
 
 func _ready() -> void:
-    _current_temperature = MIN_TEMP
+    _current_temperature = START_TEMP
     _cycles_since_last_heatwave = 0
     _cycles_since_temp_change = 0
     _last_temp_change = 0
-    _temp_midpoint = (MAX_TEMP + MIN_TEMP) / 2
+    _temp_midpoint = roundi((MAX_TEMP + MIN_TEMP) / 2.0)
     _state = State.NORMAL
 
 ## Advance temperature cycle
