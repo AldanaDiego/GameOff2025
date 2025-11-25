@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba3m0ajjqqxj4"]
+
+[ext_resource type="ArrayMesh" uid="uid://dveqac8qy12k6" path="res://assets/models/props/kaykit_spacebits/landingpad_large.obj" id="1_nhbhb"]
+
+[node name="LandingpadLarge" type="MeshInstance3D"]
+transform = Transform3D(2.5, 0, 0, 0, 0.5, 0, 0, 0, 2.5, 0, 0, 0)
+mesh = ExtResource("1_nhbhb")

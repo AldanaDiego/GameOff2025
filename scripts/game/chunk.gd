@@ -9,24 +9,33 @@ const GENERATE_POSITION_OFFSET: float = 10.0
 
 @export var _water_spot_prefab: PackedScene
 @export var _hideout_prefab: PackedScene
+@export var _start_pad_prefab: PackedScene
 
 var _hideouts: Array[Hideout]
 var _water_spots: Array[WaterSpot]
+var _props: Array[Node3D]
 
 func _ready() -> void:
 	_hideouts = []
 	_water_spots = []
+	_props = []
 
 ## Inits this chunk. Spawns neccesary props 
-func setup(props: Array[PackedScene]) -> void:
-	for i in range(HIDEOUT_COUNT):
-		var hideout = _hideout_prefab.instantiate() as Hideout
-		if i == 0:
-			hideout.position = Vector3.ZERO
-		else:
-			hideout.position = _generate_position()
-		_hideouts.append(hideout)
-		add_child(hideout)
+func setup(props: Array, is_center_chunk: bool = false) -> void:
+	if is_center_chunk:
+		var pad = _start_pad_prefab.instantiate()
+		pad.position = Vector3.ZERO
+		_props.append(pad)
+		add_child(pad)
+	else:
+		for i in range(HIDEOUT_COUNT):
+			var hideout = _hideout_prefab.instantiate() as Hideout
+			if i == 0:
+				hideout.position = Vector3.ZERO
+			else:
+				hideout.position = _generate_position()
+			_hideouts.append(hideout)
+			add_child(hideout)
 
 	for i in range(WATER_SPOT_COUNT):
 		var water_spot = _water_spot_prefab.instantiate() as WaterSpot
@@ -39,6 +48,7 @@ func setup(props: Array[PackedScene]) -> void:
 		var prop = prop_prefab.instantiate() as Node3D
 		prop.position = _generate_position()
 		prop.rotation_degrees.y = randf_range(0, 360)
+		_props.append(prop)
 		add_child(prop)
 
 	#TODO add other diggable spots
@@ -66,7 +76,7 @@ func _generate_position() -> Vector3:
 			randf_range(-SIZE/2 + GENERATE_POSITION_OFFSET, SIZE/2 - GENERATE_POSITION_OFFSET)
 		)
 		is_valid_pos = true
-		for prop in _hideouts + _water_spots:
+		for prop in _hideouts + _water_spots + _props:
 			if pos.distance_to(prop.position) < DISTANCE_BETWEEN_PROPS:
 				is_valid_pos = false
 				break
