@@ -209,7 +209,7 @@ func update(world_temp_level: int) -> void:
 		temp_increase = -1.0 if world_temp_level < 2 else -0.5
 	else:
 		water_consumption = (floori(_inner_temperature / 25) + 1) * (_speed_stage + 1) * 0.1
-		temp_increase = ((world_temp_level + 1) * (_speed_stage + 1) * 0.15) if world_temp_level < 2 else 3.5
+		temp_increase = ((world_temp_level + 1.5) * (_speed_stage + 1) * 0.15) if world_temp_level < 2 else 4.0
 		
 	_water_tank_level = clampf(
 			_water_tank_level - water_consumption,

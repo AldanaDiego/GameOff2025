@@ -19,7 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: scenes/ui/title_screen.tscn
 msgid "TITLE_BUTTON_START"
@@ -73,6 +73,10 @@ msgstr "Inglés"
 msgid "SETTINGS_OPTION_LANGUAGE_SPANISH"
 msgstr "Español"
 
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_LABEL_TEMP_DISPLAY"
+msgstr "Temperatura"
+
 #: scenes/ui/settings/video_settings.tscn
 msgid "SETTINGS_LABEL_SCREEN_MODE"
 msgstr "Modo Pantalla"
@@ -102,6 +106,16 @@ msgid "SETTINGS_LABEL_SFX_VOLUME"
 msgstr "Sonidos"
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_DRILL_OK"
+msgstr "OK / Taladro"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_RADAR_BACK"
+msgstr "Cancelar / Radar"
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr "Mover Arriba"
 
@@ -121,10 +135,6 @@ msgstr "Mover Derecha"
 msgid "SETTINGS_INPUT_PROMPT"
 msgstr "Presiona una tecla"
 
-#: scripts/ui/settings/option_ui_input_prompt.gd
-msgid "SETTING_INPUT_ERROR_USED"
-msgstr "La tecla presionada ya está en uso"
-
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr "Menú Pestaña Izquierda"
@@ -132,6 +142,14 @@ msgstr "Menú Pestaña Izquierda"
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_RIGHT"
 msgstr "Menú Pestaña Derecha"
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_INVALID"
+msgstr "La tecla presionada es inválida"
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_USED"
+msgstr "La tecla presionada ya está en uso"
 
 #: scenes/ui/credits.tscn
 msgid "CREDITS_BUTTON_BACK"
@@ -141,5 +159,34 @@ msgstr "Volver"
 msgid "CREDITS_TITLE_PROGRAMMING"
 msgstr "Programación"
 
-#~ msgid "SETTING_INPUT_ERROR_INVALID"
-#~ msgstr "La tecla presionada es inválida"
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_3D"
+msgstr "Modelos 3D"
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_MUSIC"
+msgstr "Música / Efectos de Sonido"
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETURN"
+msgstr "Volver"
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETRY"
+msgstr "Reintentar"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_LOSE"
+msgstr "Juego terminado"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_WIN"
+msgstr "¡Éxito!"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_RETRY"
+msgstr "Reintentar"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_BACK"
+msgstr "Volver al inicio"

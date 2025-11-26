@@ -46,6 +46,9 @@ auto_translate_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="FocusArrow" parent="SettingsScroll/SettingsList/TempDisplay/Container/CenterContainer" index="0"]
+visible = false
+
 [node name="Label" parent="SettingsScroll/SettingsList/TempDisplay/Container" index="1"]
 text = "SETTINGS_LABEL_TEMP_DISPLAY"
 

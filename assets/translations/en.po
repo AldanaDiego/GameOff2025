@@ -19,7 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: scenes/ui/title_screen.tscn
 msgid "TITLE_BUTTON_START"
@@ -73,6 +73,10 @@ msgstr "English"
 msgid "SETTINGS_OPTION_LANGUAGE_SPANISH"
 msgstr "Spanish"
 
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_LABEL_TEMP_DISPLAY"
+msgstr "Temperature Display"
+
 #: scenes/ui/settings/video_settings.tscn
 msgid "SETTINGS_LABEL_SCREEN_MODE"
 msgstr "Screen Mode"
@@ -102,6 +106,16 @@ msgid "SETTINGS_LABEL_SFX_VOLUME"
 msgstr "SFX"
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_DRILL_OK"
+msgstr "OK / Drill"
+
+#: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_RADAR_BACK"
+msgstr "Cancel / Radar"
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr "Move Up"
 
@@ -121,10 +135,6 @@ msgstr "Move Right"
 msgid "SETTINGS_INPUT_PROMPT"
 msgstr "Press a key"
 
-#: scripts/ui/settings/option_ui_input_prompt.gd
-msgid "SETTING_INPUT_ERROR_USED"
-msgstr "Key pressed is already in use"
-
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr "Menu Tab Left"
@@ -132,6 +142,14 @@ msgstr "Menu Tab Left"
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_RIGHT"
 msgstr "Menu Tab Right"
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_INVALID"
+msgstr "Invalid key pressed"
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_USED"
+msgstr "Key pressed is already in use"
 
 #: scenes/ui/credits.tscn
 msgid "CREDITS_BUTTON_BACK"
@@ -141,5 +159,34 @@ msgstr "Back"
 msgid "CREDITS_TITLE_PROGRAMMING"
 msgstr "Programming"
 
-#~ msgid "SETTING_INPUT_ERROR_INVALID"
-#~ msgstr "Invalid key pressed"
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_3D"
+msgstr "3D Art"
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_MUSIC"
+msgstr "Music / SFX"
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETURN"
+msgstr "Return"
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETRY"
+msgstr "Retry"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_LOSE"
+msgstr "Game Over"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_WIN"
+msgstr "You win!"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_RETRY"
+msgstr "Retry"
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_BACK"
+msgstr "Return to Title"

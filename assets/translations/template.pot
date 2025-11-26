@@ -1,4 +1,4 @@
-# LANGUAGE translation for GodotTemplate for the following files:
+# LANGUAGE translation for GameOff2025 for the following files:
 # res://scenes/ui/title_screen.tscn
 # res://scenes/ui/settings_menu.tscn
 # res://scenes/ui/settings/general_settings.tscn
@@ -11,13 +11,15 @@
 # res://scripts/ui/settings/option_ui_input_prompt.gd
 # res://scenes/ui/settings/controller_settings.tscn
 # res://scenes/ui/credits.tscn
+# res://scenes/ui/game/pause_menu.tscn
+# res://scenes/ui/game/game_over.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GodotTemplate\n"
+"Project-Id-Version: GameOff2025\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
@@ -74,6 +76,10 @@ msgstr ""
 msgid "SETTINGS_OPTION_LANGUAGE_SPANISH"
 msgstr ""
 
+#: scenes/ui/settings/general_settings.tscn
+msgid "SETTINGS_LABEL_TEMP_DISPLAY"
+msgstr ""
+
 #: scenes/ui/settings/video_settings.tscn
 msgid "SETTINGS_LABEL_SCREEN_MODE"
 msgstr ""
@@ -103,6 +109,16 @@ msgid "SETTINGS_LABEL_SFX_VOLUME"
 msgstr ""
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_DRILL_OK"
+msgstr ""
+
+#: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_RADAR_BACK"
+msgstr ""
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr ""
 
@@ -122,10 +138,6 @@ msgstr ""
 msgid "SETTINGS_INPUT_PROMPT"
 msgstr ""
 
-#: scripts/ui/settings/option_ui_input_prompt.gd
-msgid "SETTING_INPUT_ERROR_USED"
-msgstr ""
-
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr ""
@@ -134,10 +146,50 @@ msgstr ""
 msgid "SETTINGS_LABEL_TAB_RIGHT"
 msgstr ""
 
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_INVALID"
+msgstr ""
+
+#: scripts/ui/settings/option_ui_input_prompt.gd
+msgid "SETTING_INPUT_ERROR_USED"
+msgstr ""
+
 #: scenes/ui/credits.tscn
 msgid "CREDITS_BUTTON_BACK"
 msgstr ""
 
 #: scenes/ui/credits.tscn
 msgid "CREDITS_TITLE_PROGRAMMING"
+msgstr ""
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_3D"
+msgstr ""
+
+#: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_MUSIC"
+msgstr ""
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETURN"
+msgstr ""
+
+#: scenes/ui/game/pause_menu.tscn
+msgid "PAUSE_BUTTON_RETRY"
+msgstr ""
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_LOSE"
+msgstr ""
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_LABEL_WIN"
+msgstr ""
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_RETRY"
+msgstr ""
+
+#: scenes/ui/game/game_over.tscn
+msgid "GAME_OVER_BUTTON_BACK"
 msgstr ""

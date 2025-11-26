@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmtw0wo7ao3ry"]
+[gd_scene load_steps=3 format=3 uid="uid://bmtw0wo7ao3ry"]
 
 [ext_resource type="Script" uid="uid://cnvbixj2rto3g" path="res://scripts/ui/credits.gd" id="1_oap8i"]
+[ext_resource type="FontFile" uid="uid://dsxvfo7ohmd7p" path="res://assets/fonts/Orbitron-VariableFont_wght.ttf" id="2_jkvjv"]
 
 [node name="Credits" type="Control" node_paths=PackedStringArray("_sections")]
 layout_mode = 3
@@ -31,13 +32,15 @@ icon_alignment = 2
 
 [node name="Programming" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 97.928
+offset_left = 150.0
 offset_top = 134.953
-offset_right = 339.928
-offset_bottom = 184.953
+offset_right = 821.0
+offset_bottom = 207.953
 
 [node name="Title" type="Label" parent="Programming"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jkvjv")
+theme_override_font_sizes/font_size = 36
 text = "CREDITS_TITLE_PROGRAMMING"
 horizontal_alignment = 1
 
@@ -49,13 +52,15 @@ horizontal_alignment = 1
 
 [node name="3D" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 500.0
+offset_left = 750.0
 offset_top = 134.953
-offset_right = 742.0
-offset_bottom = 210.953
+offset_right = 1169.0
+offset_bottom = 233.953
 
 [node name="Title" type="Label" parent="3D"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jkvjv")
+theme_override_font_sizes/font_size = 36
 text = "CREDITS_TITLE_3D"
 horizontal_alignment = 1
 
@@ -68,13 +73,15 @@ horizontal_alignment = 1
 
 [node name="MusicVFX" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 900.0
+offset_left = 1300.0
 offset_top = 134.953
-offset_right = 1142.0
-offset_bottom = 210.953
+offset_right = 1789.0
+offset_bottom = 285.953
 
 [node name="Title" type="Label" parent="MusicVFX"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jkvjv")
+theme_override_font_sizes/font_size = 36
 text = "CREDITS_TITLE_MUSIC"
 horizontal_alignment = 1
 

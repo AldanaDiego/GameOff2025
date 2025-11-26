@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://d4bhotf5ve6u2"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://d4bhotf5ve6u2"]
+
+[ext_resource type="FontFile" uid="uid://bi5ur88bhcm8t" path="res://assets/fonts/Quantico-Regular.ttf" id="1_u7skf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4p32j"]
 bg_color = Color(0.111949, 0.415242, 0.684682, 1)
@@ -89,12 +91,14 @@ corner_radius_bottom_left = 16
 
 [resource]
 default_font_size = 28
+Button/fonts/font = ExtResource("1_u7skf")
 Button/styles/focus = SubResource("StyleBoxFlat_4p32j")
 Button/styles/hover = SubResource("StyleBoxFlat_tuky0")
 Button/styles/normal = SubResource("StyleBoxFlat_5uva7")
 Button/styles/pressed = SubResource("StyleBoxFlat_ckelk")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_lwt1b")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ncue7")
+Label/fonts/font = ExtResource("1_u7skf")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_wwvfc")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_01ch6")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_lym0j")
