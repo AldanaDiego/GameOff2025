@@ -32,12 +32,14 @@ var _drill_action_timer: Timer
 var _radar_button_pressed: float
 var _radar_action_timer: Timer
 var _current_water_spot: WaterSpot
+var _current_treasure_spot: TreasureSpot
 var _current_hideout: Hideout
 var _speed_stage: int
 var _water_tank_level: float
 var _inner_temperature: float
 
 signal on_radar_used
+signal on_water_depleted
 
 func _ready() -> void:
     _animation.playback_default_blend_time = 0.6
@@ -135,6 +137,9 @@ func _start_drill_action() -> void:
     
     if _current_water_spot != null:
         _current_water_spot.extract()
+    elif _current_treasure_spot != null:
+        _current_treasure_spot.extract()
+
     brake = 0
     _drill_particles_left.emitting = false
     _drill_particles_right.emitting = false
@@ -161,6 +166,10 @@ func _start_radar_action() -> void:
 func set_current_water_spot(spot: WaterSpot) -> void:
     _current_water_spot = spot
 
+## Updates references to TreasureSpot when entering or leaving their Area3D
+func set_current_treasure_spot(spot: TreasureSpot) -> void:
+    _current_treasure_spot = spot
+
 ## Updates references to Hideout when entering or leaving their Area3D
 func set_current_hideout(hideout: Hideout) -> void:
     _current_hideout = hideout
@@ -181,6 +190,11 @@ func get_inner_temperature() -> float:
 ## Sets the player state
 func set_state(new_state: PlayerState) -> void:
     _state = new_state
+    if _state == PlayerState.INACTIVE:
+        steering = 0.0
+        brake = 0.5
+    else:
+        brake = 0
 
 ## Update water consumption and inner temperature
 func update(world_temp_level: int) -> void:
@@ -207,4 +221,9 @@ func update(world_temp_level: int) -> void:
         0.0,
         100.0
     )
+
+    #TODO fix visual when close to 0
     _water_tank_material.set_shader_parameter("liquid_height", _water_tank_level / 100.0)
+
+    if _water_tank_level == 0.0:
+        on_water_depleted.emit()

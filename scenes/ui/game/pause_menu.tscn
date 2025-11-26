@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy5sjkcuc2eq3"]
+
+[ext_resource type="Theme" uid="uid://d4bhotf5ve6u2" path="res://assets/ui_themes/main_theme.tres" id="1_sqinr"]
+[ext_resource type="Script" uid="uid://bu1xesmsrm0qh" path="res://scripts/ui/game/pause_menu.gd" id="2_fouph"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sqinr")
+script = ExtResource("2_fouph")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ReturnButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "PAUSE_BUTTON_RETURN"
+
+[node name="RetryButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "PAUSE_BUTTON_RETRY"

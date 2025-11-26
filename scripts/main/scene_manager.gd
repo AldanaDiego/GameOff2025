@@ -82,8 +82,29 @@ func _hide_settings_menu() -> void:
 ## Instantiates the main game scene. Should only be used in [method SceneManager.start_game] method.
 func _load_game_scene() -> void:
 	_game_scene = _game_scene_prefab.instantiate() as Game
-	#TODO connect game signals
+	_game_scene.on_game_retry.connect(_on_game_retry)
+	_game_scene.on_game_return_to_title.connect(_on_game_return_to_title)
 	add_child(_game_scene)
+
+func _on_game_retry() -> void:
+	_state = State.IN_TRANSITION
+	_music.fade_out(MUSIC_FADE_OUT)
+	await _scene_transition.fade_in()
+
+	_game_scene.on_game_retry.disconnect(_on_game_retry)
+	_game_scene.on_game_return_to_title.disconnect(_on_game_return_to_title)
+	_game_scene.queue_free()
+	_load_game_scene()
+
+	_music.fade_in(3)
+	_scene_transition.fade_out()
+	_state = State.IN_GAME
+
+func _on_game_return_to_title() -> void:
+	_state = State.IN_TRANSITION
+	_music.fade_out(MUSIC_FADE_OUT)
+	await _scene_transition.fade_in()
+	get_tree().reload_current_scene()
 
 #endregion
 

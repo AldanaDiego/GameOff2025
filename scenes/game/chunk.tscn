@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://s47pl5eayam1"]
+[gd_scene load_steps=9 format=3 uid="uid://s47pl5eayam1"]
 
 [ext_resource type="Script" uid="uid://cfnirka8qamsp" path="res://scripts/game/chunk.gd" id="1_mwome"]
 [ext_resource type="PackedScene" uid="uid://cdabtqsx37mkn" path="res://scenes/game/water_spot.tscn" id="2_7tsyb"]
 [ext_resource type="PackedScene" uid="uid://c1ur4ujjb7m74" path="res://scenes/game/hideout.tscn" id="3_20fyn"]
 [ext_resource type="PackedScene" uid="uid://ba3m0ajjqqxj4" path="res://scenes/game/decorations/start_pad.tscn" id="4_45vtv"]
+[ext_resource type="PackedScene" uid="uid://d3hgl2nxwhtlt" path="res://scenes/game/treasure_spot.tscn" id="5_e2tdv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7h61r"]
 size = Vector3(100, 0.5, 100)
@@ -20,6 +21,7 @@ script = ExtResource("1_mwome")
 _water_spot_prefab = ExtResource("2_7tsyb")
 _hideout_prefab = ExtResource("3_20fyn")
 _start_pad_prefab = ExtResource("4_45vtv")
+_treasure_spot_prefab = ExtResource("5_e2tdv")
 
 [node name="FloorCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)

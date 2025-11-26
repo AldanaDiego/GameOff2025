@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://d3hgl2nxwhtlt"]
+
+[ext_resource type="Script" uid="uid://bj5kbptrvx5l3" path="res://scripts/game/treasure_spot.gd" id="1_4h5lo"]
+[ext_resource type="Texture2D" uid="uid://caje231lgkiv3" path="res://assets/images/donut.png" id="1_60fe7"]
+[ext_resource type="Texture2D" uid="uid://bytj0u4185ioh" path="res://assets/images/sparkle.png" id="2_4h5lo"]
+[ext_resource type="ArrayMesh" uid="uid://cw1kq0g16ouqj" path="res://assets/models/props/gem.obj" id="4_wxf0l"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wxf0l"]
+height = 1.0
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2jfm"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_60fe7")
+
+[sub_resource type="Curve" id="Curve_02kru"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.509709, 0.550562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a0oka"]
+curve = SubResource("Curve_02kru")
+
+[sub_resource type="Curve" id="Curve_sxkag"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_re1d4"]
+curve = SubResource("Curve_sxkag")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7a2bo"]
+resource_local_to_scene = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_re1d4")
+color = Color(0.756863, 0.415686, 1, 1)
+alpha_curve = SubResource("CurveTexture_a0oka")
+
+[sub_resource type="QuadMesh" id="QuadMesh_u6rj5"]
+size = Vector2(6.5, 6.5)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x16se"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_4h5lo")
+
+[sub_resource type="Curve" id="Curve_atlnb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.301932, 1), 0.0, 0.0, 0, 0, Vector2(0.736715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ndjva"]
+curve = SubResource("Curve_atlnb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bhx0j"]
+emission_shape_scale = Vector3(2.5, 2, 2.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0.5, 0)
+color = Color(0.756863, 0.415686, 1, 1)
+alpha_curve = SubResource("CurveTexture_ndjva")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lec7r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02kru"]
+albedo_color = Color(1, 0.117647, 1, 1)
+metallic = 0.45
+roughness = 0.0
+
+[sub_resource type="Animation" id="Animation_wxf0l"]
+resource_name = "spin"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w2jfm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02kru"]
+_data = {
+&"RESET": SubResource("Animation_w2jfm"),
+&"spin": SubResource("Animation_wxf0l")
+}
+
+[node name="TreasureSpot" type="Node3D"]
+script = ExtResource("1_4h5lo")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_wxf0l")
+
+[node name="WaveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+material_override = SubResource("StandardMaterial3D_w2jfm")
+emitting = false
+amount = 2
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_7a2bo")
+draw_pass_1 = SubResource("QuadMesh_u6rj5")
+
+[node name="SparkleParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_x16se")
+emitting = false
+lifetime = 1.5
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_bhx0j")
+draw_pass_1 = SubResource("QuadMesh_lec7r")
+
+[node name="Gem" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+mesh = ExtResource("4_wxf0l")
+surface_material_override/0 = SubResource("StandardMaterial3D_02kru")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gem"]
+libraries = {
+&"": SubResource("AnimationLibrary_02kru")
+}
+autoplay = "spin"

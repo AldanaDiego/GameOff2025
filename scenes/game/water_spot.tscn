@@ -17,22 +17,22 @@ albedo_texture = ExtResource("2_vq5qy")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.509709, 0.550562), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_vq5qy"]
+[sub_resource type="CurveTexture" id="CurveTexture_px1ra"]
 curve = SubResource("Curve_hgxsv")
 
 [sub_resource type="Curve" id="Curve_o16qt"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_px1ra"]
+[sub_resource type="CurveTexture" id="CurveTexture_hgxsv"]
 curve = SubResource("Curve_o16qt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bg6sr"]
 resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_px1ra")
+scale_curve = SubResource("CurveTexture_hgxsv")
 color = Color(0.172549, 0.380392, 1, 1)
-alpha_curve = SubResource("CurveTexture_vq5qy")
+alpha_curve = SubResource("CurveTexture_px1ra")
 
 [sub_resource type="QuadMesh" id="QuadMesh_b86ub"]
 size = Vector2(6.5, 6.5)
@@ -48,7 +48,7 @@ albedo_texture = ExtResource("3_px1ra")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.301932, 1), 0.0, 0.0, 0, 0, Vector2(0.736715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_o16qt"]
+[sub_resource type="CurveTexture" id="CurveTexture_ehoms"]
 curve = SubResource("Curve_ehoms")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3u7yp"]
@@ -61,7 +61,7 @@ emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0.5, 0)
 color = Color(0.176471, 0.768627, 1, 1)
-alpha_curve = SubResource("CurveTexture_o16qt")
+alpha_curve = SubResource("CurveTexture_ehoms")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bg6sr"]
 

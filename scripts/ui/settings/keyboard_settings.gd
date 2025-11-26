@@ -1,6 +1,8 @@
 class_name KeyboardSettings extends SettingSectionMenu
 ## Sub menu for settings in charge of keyboard controls
 
+#TODO add pause action settings
+
 @onready var _drill_ok_option: OptionUI = $SettingsScroll/SettingsList/DrillOk
 @onready var _radar_back_option: OptionUI = $SettingsScroll/SettingsList/RadarBack
 @onready var _move_up_option: OptionUI = $SettingsScroll/SettingsList/MoveUp

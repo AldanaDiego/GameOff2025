@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lsegrykfv1ap"]
+[gd_scene load_steps=11 format=3 uid="uid://lsegrykfv1ap"]
 
 [ext_resource type="Script" uid="uid://blaskxyf3wgol" path="res://scripts/game/game.gd" id="1_6eho4"]
 [ext_resource type="PackedScene" uid="uid://ih7uiwkwxfw" path="res://scenes/game/player.tscn" id="2_7h61r"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b62xhn2js0lry" path="res://scenes/game/weather.tscn" id="4_5i0tg"]
 [ext_resource type="PackedScene" uid="uid://c54j2cgot4p2i" path="res://scenes/ui/game/player_ui.tscn" id="4_kelw5"]
 [ext_resource type="PackedScene" uid="uid://g0e81vfdggov" path="res://scenes/ui/game/weather_ui.tscn" id="5_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://cxfa0kwl0ubd7" path="res://scenes/ui/game/game_over.tscn" id="8_87uf6"]
+[ext_resource type="PackedScene" uid="uid://dy5sjkcuc2eq3" path="res://scenes/ui/game/pause_menu.tscn" id="9_2a8rs"]
 
 [sub_resource type="Environment" id="Environment_lfrn8"]
 background_mode = 2
@@ -16,20 +18,35 @@ ambient_light_color = Color(0.344076, 0.344076, 0.344076, 1)
 tonemap_mode = 2
 
 [node name="Game" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_6eho4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+process_mode = 1
 environment = SubResource("Environment_lfrn8")
 
 [node name="Player" parent="." instance=ExtResource("2_7h61r")]
+process_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 1
 transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 0, 2.5, -4.5)
 
 [node name="Stage" parent="." instance=ExtResource("3_0sr1o")]
+process_mode = 1
 
 [node name="Weather" parent="." instance=ExtResource("4_5i0tg")]
+process_mode = 1
 
 [node name="PlayerUI" parent="." instance=ExtResource("4_kelw5")]
+process_mode = 1
 
 [node name="WeatherUI" parent="." instance=ExtResource("5_lfrn8")]
+process_mode = 1
+
+[node name="GameOver" parent="." instance=ExtResource("8_87uf6")]
+process_mode = 1
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_2a8rs")]
+visible = false

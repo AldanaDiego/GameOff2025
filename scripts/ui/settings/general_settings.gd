@@ -4,8 +4,6 @@ class_name GeneralSettings extends SettingSectionMenu
 @onready var _language_select: OptionUI = $SettingsScroll/SettingsList/Language
 @onready var _temp_display: OptionUI = $SettingsScroll/SettingsList/TempDisplay
 
-#TODO add input display help option
-
 ## Initializes the menu and its [class OptionUI]
 func _ready() -> void:
 	super._ready()

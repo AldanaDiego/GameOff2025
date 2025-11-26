@@ -10,18 +10,23 @@ const GENERATE_POSITION_OFFSET: float = 10.0
 @export var _water_spot_prefab: PackedScene
 @export var _hideout_prefab: PackedScene
 @export var _start_pad_prefab: PackedScene
+@export var _treasure_spot_prefab: PackedScene
 
 var _hideouts: Array[Hideout]
 var _water_spots: Array[WaterSpot]
+var _treasure_spots: Array[TreasureSpot]
 var _props: Array[Node3D]
+
+signal on_treasure_found
 
 func _ready() -> void:
 	_hideouts = []
 	_water_spots = []
+	_treasure_spots = []
 	_props = []
 
 ## Inits this chunk. Spawns neccesary props 
-func setup(props: Array, is_center_chunk: bool = false) -> void:
+func setup(props: Array, is_center_chunk: bool, has_treasure: bool) -> void:
 	if is_center_chunk:
 		var pad = _start_pad_prefab.instantiate()
 		pad.position = Vector3.ZERO
@@ -51,7 +56,12 @@ func setup(props: Array, is_center_chunk: bool = false) -> void:
 		_props.append(prop)
 		add_child(prop)
 
-	#TODO add other diggable spots
+	if has_treasure:
+		var treasure_spot = _treasure_spot_prefab.instantiate() as TreasureSpot
+		treasure_spot.position = _generate_position()
+		treasure_spot.ready_to_delete.connect(_on_treasure_spot_delete)
+		_treasure_spots.append(treasure_spot)
+		add_child(treasure_spot)
 
 ## Reveal diggable spots that are at a certain distance from [param pos]
 func reveal_diggable_spots(pos: Vector3) -> void:
@@ -62,7 +72,10 @@ func reveal_diggable_spots(pos: Vector3) -> void:
 			if distance <= GlobalConstants.PLAYER_RADAR_DISTANCE:
 				water_spot.reveal()
 
-	#TODO add other diggable spots
+		for treasure_spot in _treasure_spots:
+			var distance: float = treasure_spot.global_position.distance_to(pos)
+			if distance <= GlobalConstants.PLAYER_RADAR_DISTANCE:
+				treasure_spot.reveal()
 
 ## Generates a random position within the chunk to place a prop. It prevents positions too close to other props.
 func _generate_position() -> Vector3:
@@ -96,3 +109,11 @@ func _on_water_spot_delete(spot: WaterSpot) -> void:
 	new_spot.ready_to_delete.connect(_on_water_spot_delete)
 	_water_spots[index] = new_spot
 	add_child(new_spot)
+
+## Deletes a treasure spot after its been digged
+func _on_treasure_spot_delete(spot: TreasureSpot) -> void:
+	var index: int = _treasure_spots.find(spot)
+	_treasure_spots[index].ready_to_delete.disconnect(_on_treasure_spot_delete)
+	_treasure_spots[index].queue_free()
+	_treasure_spots.remove_at(index)
+	on_treasure_found.emit()
