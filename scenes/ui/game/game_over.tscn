@@ -58,3 +58,6 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 6
 text = "GAME_OVER_BUTTON_BACK"
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

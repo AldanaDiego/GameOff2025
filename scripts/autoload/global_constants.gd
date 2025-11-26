@@ -13,9 +13,8 @@ const UI_NAVIGATION_COOLDOWN: float = 0.175
 const SETTINGS_INPUT_PROMPT_TIME: float = 5
 const JOYSTICK_DEADZONE: float = 0.5
 
-#TODO add menu sfx
-const MENU_OK_SFX: AudioStream = null
-const MENU_MOVE_SFX: AudioStream = null
-const MENU_CANCEL_SFX: AudioStream = null
+const MENU_OK_SFX: AudioStream = preload("res://assets/sfx/menu_accept.mp3")
+const MENU_MOVE_SFX: AudioStream = preload("res://assets/sfx/menu_move.mp3")
+const MENU_CANCEL_SFX: AudioStream = preload("res://assets/sfx/menu_cancel.mp3")
 
 const PLAYER_RADAR_DISTANCE: float = 50.0

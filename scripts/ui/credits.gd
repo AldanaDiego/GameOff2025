@@ -41,7 +41,7 @@ func change_visible(visibility: bool, duration: float, delay: float = 0) -> void
 		for i in _sections.size():
 			var section = _sections[i]
 			section.show()
-			await GlobalTools.ui_tween(section, true, Vector2(0, 10), SECTION_SHOW_TIME, SECTION_SHOW_DELAY + (1 if i == 1 else 0), Tween.TRANS_SINE)
+			await GlobalTools.ui_tween(section, true, Vector2(0, 10), SECTION_SHOW_TIME, SECTION_SHOW_DELAY, Tween.TRANS_SINE)
 		_back_button.show()
 		await GlobalTools.ui_tween(_back_button, true, Vector2(0, 50), SECTION_SHOW_TIME, 0, Tween.TRANS_CUBIC)
 		_state = GlobalConstants.State.ACTIVE

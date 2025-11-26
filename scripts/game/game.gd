@@ -18,6 +18,8 @@ var _is_game_paused: bool
 signal on_game_retry
 signal on_game_return_to_title
 
+#region Setup and process
+
 func _ready() -> void:
     _is_game_paused = false
     _stage.on_stage_ready.connect(_on_stage_ready)
@@ -42,46 +44,9 @@ func _process(_delta) -> void:
     _camera.position.z = _player.camera_controller.global_position.z
     _camera.rotation_degrees.y = _player.rotation_degrees.y + 180
 
-func _on_stage_ready() -> void:
-    pass
+#endregion
 
-func _on_player_water_depleted() -> void:
-    _player.set_state(Player.PlayerState.INACTIVE)
-    _game_over_ui.show_menu(true)
-
-func _on_stage_all_treasures_found() -> void:
-    _player.set_state(Player.PlayerState.INACTIVE)
-    _game_over_ui.show_menu(false)
-
-## Checks if there is any WaterSpot nearby the player when the radar is used
-func _on_player_radar_used() -> void:
-    var pos = _player.global_position
-    _stage.reveal_diggable_spots(pos)
-
-func _on_game_over_retry_pressed() -> void:
-    await _game_over_ui.hide_menu()
-    on_game_retry.emit()
-
-func _on_game_over_return_pressed() -> void:
-    await _game_over_ui.hide_menu()
-    on_game_return_to_title.emit()
-
-func _on_pause_retry_pressed() -> void:
-    await _pause_menu.hide_menu()
-    get_tree().paused = false
-    _is_game_paused = false
-    _player.set_state(Player.PlayerState.INACTIVE)
-    on_game_retry.emit()
-
-func _on_pause_return_pressed() -> void:
-    await _pause_menu.hide_menu()
-    get_tree().paused = false
-    _is_game_paused = false
-
-func _pause_menu_show() -> void:
-    _is_game_paused = true
-    get_tree().paused = true
-    _pause_menu.show_menu()
+#region Private functions
 
 ## Every second updates game behaviour
 func _on_tick() -> void:
@@ -89,3 +54,62 @@ func _on_tick() -> void:
     _weather_ui.update(_weather.get_current_temperature(), _weather.get_current_temperature_level())
     _player.update(_weather.get_current_temperature_level())
     _player_ui.update(_player.get_water_tank(), _player.get_inner_temperature())
+
+## Pauses the game and shows menu
+func _pause_menu_show() -> void:
+    _is_game_paused = true
+    _pause_menu.show_menu()
+    get_tree().paused = true
+
+#endregion
+
+#region Stage signal connects
+
+## Listens to stage finished spawning
+func _on_stage_ready() -> void:
+    pass
+
+## Shows game over UI when player runs out of water
+func _on_player_water_depleted() -> void:
+    _player.set_state(Player.PlayerState.INACTIVE)
+    _game_over_ui.show_menu(true)
+
+## Shows game over UI when player finds all treasure on stage
+func _on_stage_all_treasures_found() -> void:
+    _player.set_state(Player.PlayerState.INACTIVE)
+    _game_over_ui.show_menu(false)
+
+## Checks if there is any [class WaterSpot] nearby the player when the radar is used
+func _on_player_radar_used() -> void:
+    var pos = _player.global_position
+    _stage.reveal_diggable_spots(pos)
+
+#endregion
+
+#region Menu signal connects
+
+## Listens to retry button on game over menu
+func _on_game_over_retry_pressed() -> void:
+    await _game_over_ui.hide_menu()
+    on_game_retry.emit()
+
+## Listens to return to title button on game over menu
+func _on_game_over_return_pressed() -> void:
+    await _game_over_ui.hide_menu()
+    on_game_return_to_title.emit()
+
+## Listens to retry button on pause menu
+func _on_pause_retry_pressed() -> void:
+    await _pause_menu.hide_menu()
+    get_tree().paused = false
+    _is_game_paused = false
+    _player.set_state(Player.PlayerState.INACTIVE)
+    on_game_retry.emit()
+
+## Listens to return button on pause menu
+func _on_pause_return_pressed() -> void:
+    await _pause_menu.hide_menu()
+    get_tree().paused = false
+    _is_game_paused = false
+
+#endregion

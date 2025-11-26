@@ -19,3 +19,4 @@ Game made in Godot for Github Game Off Jam 2025
 - [Free Music Pack](https://clement-panchout.itch.io/yet-another-free-music-pack) by Clement Panchout
 - [Ambiences Music Pack](https://jdsherbert.itch.io/ambiences-music-pack) by JDSherbert
 - [Old School Shonen SFX](https://heltonyan.itch.io/retroanimesfx) by Helton Yan
+- [Universal UI/Menu Soundpack](https://cyrex-studios.itch.io/universal-ui-soundpack) by Cyrex Studios
