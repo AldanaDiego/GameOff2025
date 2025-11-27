@@ -116,6 +116,11 @@ msgid "SETTINGS_LABEL_RADAR_BACK"
 msgstr "Cancelar / Radar"
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_PAUSE"
+msgstr "Pausar"
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr "Mover Arriba"
 
@@ -131,17 +136,19 @@ msgstr "Mover Izquierda"
 msgid "SETTINGS_LABEL_MOVE_RIGHT"
 msgstr "Mover Derecha"
 
-#: scenes/ui/settings/option_ui_input_prompt.tscn
-msgid "SETTINGS_INPUT_PROMPT"
-msgstr "Presiona una tecla"
-
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr "Menú Pestaña Izquierda"
 
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_RIGHT"
 msgstr "Menú Pestaña Derecha"
+
+#: scenes/ui/settings/option_ui_input_prompt.tscn
+msgid "SETTINGS_INPUT_PROMPT"
+msgstr "Presiona una tecla"
 
 #: scripts/ui/settings/option_ui_input_prompt.gd
 msgid "SETTING_INPUT_ERROR_INVALID"
@@ -164,8 +171,12 @@ msgid "CREDITS_TITLE_3D"
 msgstr "Modelos 3D"
 
 #: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_UI"
+msgstr "Interfaz de Usuario"
+
+#: scenes/ui/credits.tscn
 msgid "CREDITS_TITLE_MUSIC"
-msgstr "Música / Efectos de Sonido"
+msgstr "Música / Sonidos"
 
 #: scenes/ui/game/pause_menu.tscn
 msgid "PAUSE_BUTTON_RETURN"
@@ -175,13 +186,9 @@ msgstr "Volver"
 msgid "PAUSE_BUTTON_RETRY"
 msgstr "Reintentar"
 
-#: scenes/ui/game/game_over.tscn
+#: scenes/ui/game/game_over.tscn scripts/ui/game/game_over.gd
 msgid "GAME_OVER_LABEL_LOSE"
 msgstr "Juego terminado"
-
-#: scenes/ui/game/game_over.tscn
-msgid "GAME_OVER_LABEL_WIN"
-msgstr "¡Éxito!"
 
 #: scenes/ui/game/game_over.tscn
 msgid "GAME_OVER_BUTTON_RETRY"
@@ -190,3 +197,7 @@ msgstr "Reintentar"
 #: scenes/ui/game/game_over.tscn
 msgid "GAME_OVER_BUTTON_BACK"
 msgstr "Volver al inicio"
+
+#: scripts/ui/game/game_over.gd
+msgid "GAME_OVER_LABEL_WIN"
+msgstr "¡Éxito!"

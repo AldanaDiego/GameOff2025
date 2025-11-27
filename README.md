@@ -12,8 +12,10 @@ Game made in Godot for Github Game Off Jam 2025
 
 ### Prop Models
 - [Space Base Bits](https://kaylousberg.itch.io/space-base-bits) by Kay Lousberg
+- [Forest Nature Pack](https://kaylousberg.itch.io/kaykit-forest) by Kay Lousberg
 
 ### Art and UI
+- [Input Prompts](https://kenney.nl/assets/input-prompts) by Kenney
 
 ### Music and SFX
 - [Free Music Pack](https://clement-panchout.itch.io/yet-another-free-music-pack) by Clement Panchout

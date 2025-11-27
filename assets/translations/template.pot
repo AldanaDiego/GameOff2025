@@ -13,6 +13,7 @@
 # res://scenes/ui/credits.tscn
 # res://scenes/ui/game/pause_menu.tscn
 # res://scenes/ui/game/game_over.tscn
+# res://scripts/ui/game/game_over.gd
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -119,6 +120,11 @@ msgid "SETTINGS_LABEL_RADAR_BACK"
 msgstr ""
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_PAUSE"
+msgstr ""
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr ""
 
@@ -134,16 +140,18 @@ msgstr ""
 msgid "SETTINGS_LABEL_MOVE_RIGHT"
 msgstr ""
 
-#: scenes/ui/settings/option_ui_input_prompt.tscn
-msgid "SETTINGS_INPUT_PROMPT"
-msgstr ""
-
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr ""
 
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_RIGHT"
+msgstr ""
+
+#: scenes/ui/settings/option_ui_input_prompt.tscn
+msgid "SETTINGS_INPUT_PROMPT"
 msgstr ""
 
 #: scripts/ui/settings/option_ui_input_prompt.gd
@@ -167,6 +175,10 @@ msgid "CREDITS_TITLE_3D"
 msgstr ""
 
 #: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_UI"
+msgstr ""
+
+#: scenes/ui/credits.tscn
 msgid "CREDITS_TITLE_MUSIC"
 msgstr ""
 
@@ -179,11 +191,8 @@ msgid "PAUSE_BUTTON_RETRY"
 msgstr ""
 
 #: scenes/ui/game/game_over.tscn
+#: scripts/ui/game/game_over.gd
 msgid "GAME_OVER_LABEL_LOSE"
-msgstr ""
-
-#: scenes/ui/game/game_over.tscn
-msgid "GAME_OVER_LABEL_WIN"
 msgstr ""
 
 #: scenes/ui/game/game_over.tscn
@@ -192,4 +201,8 @@ msgstr ""
 
 #: scenes/ui/game/game_over.tscn
 msgid "GAME_OVER_BUTTON_BACK"
+msgstr ""
+
+#: scripts/ui/game/game_over.gd
+msgid "GAME_OVER_LABEL_WIN"
 msgstr ""

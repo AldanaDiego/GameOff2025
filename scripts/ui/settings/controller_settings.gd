@@ -2,6 +2,7 @@ class_name ControllerSettings extends SettingSectionMenu
 
 @onready var _drill_ok_option: OptionUI = $SettingsScroll/SettingsList/DrillOk
 @onready var _radar_back_option: OptionUI = $SettingsScroll/SettingsList/RadarBack
+@onready var _pause_option: OptionUI = $SettingsScroll/SettingsList/Pause
 @onready var _tab_left_option: OptionUI = $SettingsScroll/SettingsList/TabLeft
 @onready var _tab_right_option: OptionUI = $SettingsScroll/SettingsList/TabRight
 
@@ -10,7 +11,7 @@ signal on_controller_setting_changed
 ## Initializes the menu and its [class OptionUI]
 func _ready() -> void:
 	super._ready()
-	_settings = [_drill_ok_option, _radar_back_option, _tab_left_option, _tab_right_option]
+	_settings = [_drill_ok_option, _radar_back_option, _pause_option,_tab_left_option, _tab_right_option]
 	_scroll = $SettingsScroll
 
 	for option: OptionUIInput in _settings:
@@ -21,6 +22,7 @@ func _ready() -> void:
 
 	_drill_ok_option.setup("Controller", "DrillMenuOk", Settings.get_setting_value("Controller", "DrillMenuOk"))
 	_radar_back_option.setup("Controller", "RadarMenuBack", Settings.get_setting_value("Controller", "RadarMenuBack"))
+	_pause_option.setup("Controller", "Pause", Settings.get_setting_value("Controller", "Pause"))
 	_tab_left_option.setup("Controller", "MenuTabLeft", Settings.get_setting_value("Controller", "MenuTabLeft"))
 	_tab_right_option.setup("Controller", "MenuTabRight", Settings.get_setting_value("Controller", "MenuTabRight"))
 

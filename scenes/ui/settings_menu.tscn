@@ -19,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_q7utv")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+auto_translate_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -39,25 +40,30 @@ all_tabs_in_front = true
 tab_focus_mode = 0
 
 [node name="GeneralSettings" parent="TabContainer" instance=ExtResource("3_dbg0n")]
+auto_translate_mode = 1
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="VolumeSettings" parent="TabContainer" instance=ExtResource("1_a1fh3")]
+auto_translate_mode = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="VideoSettings" parent="TabContainer" instance=ExtResource("3_jg6lq")]
+auto_translate_mode = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
 [node name="KeyboardSettings" parent="TabContainer" instance=ExtResource("6_ovekb")]
+auto_translate_mode = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
 [node name="ControllerSettings" parent="TabContainer" instance=ExtResource("6_44l5h")]
+auto_translate_mode = 1
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4

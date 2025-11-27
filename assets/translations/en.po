@@ -116,6 +116,11 @@ msgid "SETTINGS_LABEL_RADAR_BACK"
 msgstr "Cancel / Radar"
 
 #: scenes/ui/settings/keyboard_settings.tscn
+#: scenes/ui/settings/controller_settings.tscn
+msgid "SETTINGS_LABEL_PAUSE"
+msgstr "Pause"
+
+#: scenes/ui/settings/keyboard_settings.tscn
 msgid "SETTINGS_LABEL_MOVE_UP"
 msgstr "Move Up"
 
@@ -131,17 +136,19 @@ msgstr "Move Left"
 msgid "SETTINGS_LABEL_MOVE_RIGHT"
 msgstr "Move Right"
 
-#: scenes/ui/settings/option_ui_input_prompt.tscn
-msgid "SETTINGS_INPUT_PROMPT"
-msgstr "Press a key"
-
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_LEFT"
 msgstr "Menu Tab Left"
 
+#: scenes/ui/settings/keyboard_settings.tscn
 #: scenes/ui/settings/controller_settings.tscn
 msgid "SETTINGS_LABEL_TAB_RIGHT"
 msgstr "Menu Tab Right"
+
+#: scenes/ui/settings/option_ui_input_prompt.tscn
+msgid "SETTINGS_INPUT_PROMPT"
+msgstr "Press a key"
 
 #: scripts/ui/settings/option_ui_input_prompt.gd
 msgid "SETTING_INPUT_ERROR_INVALID"
@@ -164,6 +171,10 @@ msgid "CREDITS_TITLE_3D"
 msgstr "3D Art"
 
 #: scenes/ui/credits.tscn
+msgid "CREDITS_TITLE_UI"
+msgstr "UI Art"
+
+#: scenes/ui/credits.tscn
 msgid "CREDITS_TITLE_MUSIC"
 msgstr "Music / SFX"
 
@@ -175,13 +186,9 @@ msgstr "Return"
 msgid "PAUSE_BUTTON_RETRY"
 msgstr "Retry"
 
-#: scenes/ui/game/game_over.tscn
+#: scenes/ui/game/game_over.tscn scripts/ui/game/game_over.gd
 msgid "GAME_OVER_LABEL_LOSE"
 msgstr "Game Over"
-
-#: scenes/ui/game/game_over.tscn
-msgid "GAME_OVER_LABEL_WIN"
-msgstr "You win!"
 
 #: scenes/ui/game/game_over.tscn
 msgid "GAME_OVER_BUTTON_RETRY"
@@ -190,3 +197,7 @@ msgstr "Retry"
 #: scenes/ui/game/game_over.tscn
 msgid "GAME_OVER_BUTTON_BACK"
 msgstr "Return to Title"
+
+#: scripts/ui/game/game_over.gd
+msgid "GAME_OVER_LABEL_WIN"
+msgstr "You win!"

@@ -1,10 +1,9 @@
 class_name KeyboardSettings extends SettingSectionMenu
 ## Sub menu for settings in charge of keyboard controls
 
-#TODO add pause action settings
-
 @onready var _drill_ok_option: OptionUI = $SettingsScroll/SettingsList/DrillOk
 @onready var _radar_back_option: OptionUI = $SettingsScroll/SettingsList/RadarBack
+@onready var _pause_option: OptionUI = $SettingsScroll/SettingsList/Pause
 @onready var _move_up_option: OptionUI = $SettingsScroll/SettingsList/MoveUp
 @onready var _move_down_option: OptionUI = $SettingsScroll/SettingsList/MoveDown
 @onready var _move_left_option: OptionUI = $SettingsScroll/SettingsList/MoveLeft
@@ -17,7 +16,7 @@ signal on_keyboard_setting_changed
 ## Initializes the menu and its [class OptionUI]
 func _ready() -> void:
 	super._ready()
-	_settings = [_drill_ok_option, _radar_back_option, _move_up_option, _move_down_option, _move_left_option, _move_right_option, _tab_left_option, _tab_right_option]
+	_settings = [_drill_ok_option, _radar_back_option, _pause_option,_move_up_option, _move_down_option, _move_left_option, _move_right_option, _tab_left_option, _tab_right_option]
 	_scroll = $SettingsScroll
 
 	for option: OptionUIInput in _settings:
@@ -28,6 +27,7 @@ func _ready() -> void:
 
 	_drill_ok_option.setup("Keyboard", "DrillMenuOk", Settings.get_setting_value("Keyboard", "DrillMenuOk"))
 	_radar_back_option.setup("Keyboard", "RadarMenuBack", Settings.get_setting_value("Keyboard", "RadarMenuBack"))
+	_pause_option.setup("Keyboard", "Pause", Settings.get_setting_value("Keyboard", "Pause"))
 	_move_up_option.setup("Keyboard", "MoveUp", Settings.get_setting_value("Keyboard", "MoveUp"))
 	_move_down_option.setup("Keyboard", "MoveDown", Settings.get_setting_value("Keyboard", "MoveDown"))
 	_move_left_option.setup("Keyboard", "MoveLeft", Settings.get_setting_value("Keyboard", "MoveLeft"))

@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oap8i")
-_sections = [NodePath("Programming"), NodePath("3D"), NodePath("MusicVFX")]
+_sections = [NodePath("Programming"), NodePath("3D"), NodePath("UI"), NodePath("MusicVFX")]
 
 [node name="BackButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -32,9 +32,9 @@ icon_alignment = 2
 
 [node name="Programming" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 150.0
+offset_left = 34.0
 offset_top = 134.953
-offset_right = 821.0
+offset_right = 734.0
 offset_bottom = 207.953
 
 [node name="Title" type="Label" parent="Programming"]
@@ -52,9 +52,9 @@ horizontal_alignment = 1
 
 [node name="3D" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 750.0
+offset_left = 418.0
 offset_top = 134.953
-offset_right = 1169.0
+offset_right = 1118.0
 offset_bottom = 233.953
 
 [node name="Title" type="Label" parent="3D"]
@@ -71,11 +71,32 @@ text = "Toson Devypr
 Kay Lousberg"
 horizontal_alignment = 1
 
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 802.0
+offset_top = 134.953
+offset_right = 1502.0
+offset_bottom = 233.953
+
+[node name="Title" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jkvjv")
+theme_override_font_sizes/font_size = 36
+text = "CREDITS_TITLE_UI"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="UI"]
+auto_translate_mode = 2
+layout_mode = 2
+text = "Toson Devypr
+Kenney"
+horizontal_alignment = 1
+
 [node name="MusicVFX" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1300.0
+offset_left = 1186.0
 offset_top = 134.953
-offset_right = 1789.0
+offset_right = 1886.0
 offset_bottom = 285.953
 
 [node name="Title" type="Label" parent="MusicVFX"]

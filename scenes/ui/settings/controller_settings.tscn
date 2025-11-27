@@ -47,6 +47,13 @@ size_flags_vertical = 3
 [node name="Label" parent="SettingsScroll/SettingsList/RadarBack/Container" index="1"]
 text = "SETTINGS_LABEL_RADAR_BACK"
 
+[node name="Pause" parent="SettingsScroll/SettingsList" instance=ExtResource("1_0x27n")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" parent="SettingsScroll/SettingsList/Pause/Container" index="1"]
+text = "SETTINGS_LABEL_PAUSE"
+
 [node name="TabLeft" parent="SettingsScroll/SettingsList" instance=ExtResource("1_0x27n")]
 layout_mode = 2
 size_flags_vertical = 3
@@ -70,5 +77,6 @@ bus = &"SFX"
 
 [editable path="SettingsScroll/SettingsList/DrillOk"]
 [editable path="SettingsScroll/SettingsList/RadarBack"]
+[editable path="SettingsScroll/SettingsList/Pause"]
 [editable path="SettingsScroll/SettingsList/TabLeft"]
 [editable path="SettingsScroll/SettingsList/TabRight"]

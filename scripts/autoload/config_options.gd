@@ -95,6 +95,11 @@ var _settings := {
 			"default": KEY_R,
 			"input_action": "radar_menu_back"
 		},
+		"Pause": {
+			"type": OptionType.INPUT_KEYBOARD,
+			"default": KEY_CTRL,
+			"input_action": "pause"
+		},
 		"MenuTabLeft": {
 			"type": OptionType.INPUT_KEYBOARD,
 			"default": KEY_Q,
@@ -116,6 +121,11 @@ var _settings := {
 			"type": OptionType.INPUT_CONTROLLER,
 			"default": JOY_BUTTON_B,
 			"input_action": "radar_menu_back"
+		},
+		"Pause": {
+			"type": OptionType.INPUT_CONTROLLER,
+			"default": JOY_BUTTON_START,
+			"input_action": "pause"
 		},
 		"MenuTabLeft": {
 			"type": OptionType.INPUT_CONTROLLER,
