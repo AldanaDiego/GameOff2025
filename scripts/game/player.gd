@@ -25,6 +25,7 @@ enum PlayerState { INACTIVE, IDLE, DRILL_CHARGE, DRILL, RADAR_CHARGE, RADAR }
 @onready var _drill_particles_left: GPUParticles3D = $DrillParticlesLeft
 @onready var _drill_particles_right: GPUParticles3D = $DrillParticlesRight
 @onready var _sfx: SfxPlayer = $SfxPlayer
+@onready var _motor_sfx: AudioStreamPlayer3D = $MotorSFX
 
 var _state: PlayerState
 var _drill_button_pressed: float
@@ -47,7 +48,7 @@ func _ready() -> void:
 	_animation.playback_default_blend_time = 0.6
 	_drill_button_pressed = 0.0
 	_radar_button_pressed = 0.0
-	_state = PlayerState.IDLE
+	_state = PlayerState.INACTIVE
 	_drill_action_timer = GlobalTools.add_timer_node(self, DRILL_ACTION_DURATION)
 	_radar_action_timer = GlobalTools.add_timer_node(self, RADAR_ACTION_DURATION)
 	_current_water_spot = null
@@ -60,7 +61,8 @@ func _physics_process(delta) -> void:
 	if Input.is_action_just_pressed("drill_menu_ok") and _state == PlayerState.IDLE:
 		_state = PlayerState.DRILL_CHARGE
 		_drill_button_pressed = 0.0
-		brake = 1
+		engine_force = 0.0
+		brake = 1.0
 		_animation.play("Drill_Prepare")
 
 	elif Input.is_action_pressed("drill_menu_ok"):
@@ -78,7 +80,8 @@ func _physics_process(delta) -> void:
 	if Input.is_action_just_pressed("radar_menu_back") and _state == PlayerState.IDLE:
 		_state = PlayerState.RADAR_CHARGE
 		_radar_button_pressed = 0.0
-		brake = 1
+		engine_force = 0.0
+		brake = 1.0
 		_animation.play("Radar_Prepare")
 
 	elif Input.is_action_pressed("radar_menu_back"):
@@ -100,6 +103,10 @@ func _physics_process(delta) -> void:
 
 		var accel_input: float = Input.get_axis("move_down", "move_up")
 		accel_input = accel_input if abs(accel_input) > GlobalConstants.JOYSTICK_DEADZONE else 0.0
+		if accel_input != 0.0:
+			_motor_sfx.pitch_scale = 1.2
+		else:
+			_motor_sfx.pitch_scale = 1.0
 
 		var speed: float = linear_velocity.length()
 
@@ -202,10 +209,13 @@ func get_inner_temperature() -> float:
 func set_state(new_state: PlayerState) -> void:
 	_state = new_state
 	if _state == PlayerState.INACTIVE:
+		_motor_sfx.stop()
 		steering = 0.0
 		brake = 0.5
 	else:
 		brake = 0
+		if !_motor_sfx.playing:
+			_motor_sfx.play()
 
 ## Update water consumption and inner temperature
 func update(world_temp_level: int) -> void:

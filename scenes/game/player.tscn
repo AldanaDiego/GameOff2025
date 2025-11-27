@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ih7uiwkwxfw"]
+[gd_scene load_steps=42 format=3 uid="uid://ih7uiwkwxfw"]
 
 [ext_resource type="Script" uid="uid://dqud1a66373hr" path="res://scripts/game/player.gd" id="1_6w7gq"]
 [ext_resource type="PackedScene" uid="uid://b68tqywt7f6oh" path="res://assets/models/player/scorpion.glb" id="2_dd427"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bek8jvkf2t3sd" path="res://scripts/game/liquid.gd" id="4_68xwl"]
 [ext_resource type="Texture2D" uid="uid://caje231lgkiv3" path="res://assets/images/donut.png" id="6_wwvfn"]
 [ext_resource type="PackedScene" uid="uid://cbqk4qdadee6u" path="res://scenes/utils/sfx_player.tscn" id="9_dsw4c"]
+[ext_resource type="AudioStream" uid="uid://csit5o85ver3c" path="res://assets/sfx/motor.mp3" id="10_bnwh7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u3rb4"]
 friction = 0.5
@@ -332,5 +333,10 @@ process_material = SubResource("ParticleProcessMaterial_e605p")
 draw_pass_1 = SubResource("SphereMesh_cyajl")
 
 [node name="SfxPlayer" parent="." instance=ExtResource("9_dsw4c")]
+
+[node name="MotorSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_bnwh7")
+volume_db = -20.0
+bus = &"SFX"
 
 [editable path="scorpion"]

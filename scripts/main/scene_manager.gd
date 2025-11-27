@@ -52,7 +52,8 @@ func _start_game() -> void:
 
 		_music.set_stream(_music.game_music)
 		_music.fade_in(3)
-		_scene_transition.fade_out()
+		await _scene_transition.fade_out()
+		_game_scene.start_game()
 		_state = State.IN_GAME
 
 ## Closes the game
@@ -99,7 +100,8 @@ func _on_game_retry() -> void:
 	_load_game_scene()
 
 	_music.fade_in(3)
-	_scene_transition.fade_out()
+	await _scene_transition.fade_out()
+	_game_scene.start_game()
 	_state = State.IN_GAME
 
 ## Returns from the game scene to the title scene

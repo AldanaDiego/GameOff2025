@@ -3,6 +3,8 @@ class_name Game extends Node3D
 
 const TICK: float = 1.5
 
+enum State { INACTIVE, ACTIVE, PAUSED, INTRO }
+
 @onready var _player: Player = $Player
 @onready var _camera: Camera3D = $Camera3D
 @onready var _stage: Stage = $Stage
@@ -13,7 +15,8 @@ const TICK: float = 1.5
 @onready var _pause_menu: PauseMenu = $PauseMenu
 
 var _tick_timer: Timer
-var _is_game_paused: bool
+var _start_game_timer: Timer
+var _state: State
 
 signal on_game_retry
 signal on_game_return_to_title
@@ -21,8 +24,7 @@ signal on_game_return_to_title
 #region Setup and process
 
 func _ready() -> void:
-    _is_game_paused = false
-    _stage.on_stage_ready.connect(_on_stage_ready)
+    _state = State.INTRO
     _player.on_radar_used.connect(_on_player_radar_used)
     _player.on_water_depleted.connect(_on_player_water_depleted)
     _stage.on_all_treasures_found.connect(_on_stage_all_treasures_found)
@@ -30,19 +32,24 @@ func _ready() -> void:
     _game_over_ui.on_return_pressed.connect(_on_game_over_return_pressed)
     _pause_menu.on_retry_pressed.connect(_on_pause_retry_pressed)
     _pause_menu.on_return_pressed.connect(_on_pause_return_pressed)
+
+    _camera.position = GlobalConstants.CAMERA_INTRO_POSITION
+    _camera.rotation_degrees = GlobalConstants.CAMERA_INTRO_ROTATION
+    _start_game_timer = GlobalTools.add_timer_node(self, 2)
     
     _tick_timer = GlobalTools.add_timer_node(self, TICK)
     _tick_timer.one_shot = false
     _tick_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
     _tick_timer.timeout.connect(_on_tick)
-    _tick_timer.start()
 
 func _process(_delta) -> void:
-    if !_is_game_paused and Input.is_action_pressed("pause"):
+    if _state == State.ACTIVE and Input.is_action_pressed("pause"):
         _pause_menu_show()
-    _camera.position.x = _player.camera_controller.global_position.x
-    _camera.position.z = _player.camera_controller.global_position.z
-    _camera.rotation_degrees.y = _player.rotation_degrees.y + 180
+    
+    if _state != State.INTRO:
+        _camera.position.x = _player.camera_controller.global_position.x
+        _camera.position.z = _player.camera_controller.global_position.z
+        _camera.rotation_degrees.y = _player.rotation_degrees.y + 180
 
 #endregion
 
@@ -52,6 +59,24 @@ func _process(_delta) -> void:
 func preview_vfx() -> void:
     _stage.preview_vfx()
     await _player.preview_vfx()
+
+## Plays camera animation and starts stage
+func start_game() -> void:
+    _start_game_timer.start()
+    await _start_game_timer.timeout
+
+    var tween: Tween = GlobalTools.camera_tween(
+        _camera,
+        GlobalConstants.CAMERA_INTRO_POSITION,
+        GlobalConstants.CAMERA_DEFAULT_POSITION,
+        GlobalConstants.CAMERA_INTRO_ROTATION,
+        GlobalConstants.CAMERA_DEFAULT_ROTATION,
+        4
+    )
+    await tween.finished
+    _state = State.ACTIVE
+    _player.set_state(Player.PlayerState.IDLE)
+    _tick_timer.start()
 
 #region Private functions
 
@@ -64,7 +89,7 @@ func _on_tick() -> void:
 
 ## Pauses the game and shows menu
 func _pause_menu_show() -> void:
-    _is_game_paused = true
+    _state = State.PAUSED
     _pause_menu.show_menu()
     get_tree().paused = true
 
@@ -72,17 +97,15 @@ func _pause_menu_show() -> void:
 
 #region Stage signal connects
 
-## Listens to stage finished spawning
-func _on_stage_ready() -> void:
-    pass
-
 ## Shows game over UI when player runs out of water
 func _on_player_water_depleted() -> void:
+    _state = State.INACTIVE
     _player.set_state(Player.PlayerState.INACTIVE)
     _game_over_ui.show_menu(true)
 
 ## Shows game over UI when player finds all treasure on stage
 func _on_stage_all_treasures_found() -> void:
+    _state = State.INACTIVE
     _player.set_state(Player.PlayerState.INACTIVE)
     _game_over_ui.show_menu(false)
 
@@ -97,11 +120,13 @@ func _on_player_radar_used() -> void:
 
 ## Listens to retry button on game over menu
 func _on_game_over_retry_pressed() -> void:
+    _state = State.INACTIVE
     await _game_over_ui.hide_menu()
     on_game_retry.emit()
 
 ## Listens to return to title button on game over menu
 func _on_game_over_return_pressed() -> void:
+    _state = State.INACTIVE
     await _game_over_ui.hide_menu()
     on_game_return_to_title.emit()
 
@@ -109,7 +134,7 @@ func _on_game_over_return_pressed() -> void:
 func _on_pause_retry_pressed() -> void:
     await _pause_menu.hide_menu()
     get_tree().paused = false
-    _is_game_paused = false
+    _state = State.INACTIVE
     _player.set_state(Player.PlayerState.INACTIVE)
     on_game_retry.emit()
 
@@ -117,6 +142,6 @@ func _on_pause_retry_pressed() -> void:
 func _on_pause_return_pressed() -> void:
     await _pause_menu.hide_menu()
     get_tree().paused = false
-    _is_game_paused = false
+    _state = State.ACTIVE
 
 #endregion

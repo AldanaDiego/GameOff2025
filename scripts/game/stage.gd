@@ -13,7 +13,6 @@ const TREASURE_COUNT: int = 3
 var _chunks: Array[Chunk]
 var _treasures_found: int
 
-signal on_stage_ready
 signal on_all_treasures_found
 
 #region Setup and process
@@ -45,8 +44,6 @@ func _ready() -> void:
 				_spawn_wall(pos + Vector3(0, 0, (-Chunk.SIZE / 2) - 2.5), false)
 			elif j == MAP_HEIGHT - 1:
 				_spawn_wall(pos + Vector3(0, 0, (Chunk.SIZE / 2) + 2.5), false)
-
-	on_stage_ready.emit()
 
 #endregion
 
