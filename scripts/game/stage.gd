@@ -16,6 +16,8 @@ var _treasures_found: int
 signal on_stage_ready
 signal on_all_treasures_found
 
+#region Setup and process
+
 func _ready() -> void:
 	_chunks = []
 	_treasures_found = 0
@@ -45,6 +47,24 @@ func _ready() -> void:
 				_spawn_wall(pos + Vector3(0, 0, (Chunk.SIZE / 2) + 2.5), false)
 
 	on_stage_ready.emit()
+
+#endregion
+
+#region Public functions
+
+## For each [class Chunk] reveal diggable spots that are at a certain distance from [param pos]
+func reveal_diggable_spots(pos: Vector3) -> void:
+	for chunk in _chunks:
+		chunk.reveal_diggable_spots(pos)
+
+## Plays vfx on the stage
+func preview_vfx() -> void:
+	for chunk in _chunks:
+		chunk.preview_vfx()
+
+#endregion
+
+#region Private functions
 
 ## Creates a new chunk
 func _spawn_chunk(pos: Vector3, props: Array, has_treasure: bool) -> void:
@@ -80,6 +100,7 @@ func _shuffle_decorations() -> Array:
 
 	return decorations_to_add
 
+## Returns an array of indexes for assigning treasures to certain chunks
 func _shuffle_treasure() -> Array:
 	var chunks_with_treasure = []
 	for i in range(TREASURE_COUNT):
@@ -92,12 +113,14 @@ func _shuffle_treasure() -> Array:
 
 	return chunks_with_treasure
 
+#endregion
+
+#region Signal connects
+
+## Listens to a treasure found by player. Decreases counter and checks for game over
 func _on_chunk_treasure_found() -> void:
 	_treasures_found += 1
 	if _treasures_found >= TREASURE_COUNT:
 		on_all_treasures_found.emit()
 
-## For each [class Chunk] reveal diggable spots that are at a certain distance from [param pos]
-func reveal_diggable_spots(pos: Vector3) -> void:
-	for chunk in _chunks:
-		chunk.reveal_diggable_spots(pos)
+#endregion

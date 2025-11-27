@@ -19,11 +19,17 @@ var _props: Array[Node3D]
 
 signal on_treasure_found
 
+#region Setup and process
+
 func _ready() -> void:
 	_hideouts = []
 	_water_spots = []
 	_treasure_spots = []
 	_props = []
+
+#endregion
+
+#region Public functions
 
 ## Inits this chunk. Spawns neccesary props 
 func setup(props: Array, is_center_chunk: bool, has_treasure: bool) -> void:
@@ -77,6 +83,16 @@ func reveal_diggable_spots(pos: Vector3) -> void:
 			if distance <= GlobalConstants.PLAYER_RADAR_DISTANCE:
 				treasure_spot.reveal()
 
+## Preview vfx of [class WaterSpot] and [TreasureSpot]
+func preview_vfx() -> void:
+	_water_spots[0].preview_vfx()
+	if _treasure_spots.size() > 0:
+		_treasure_spots[0].preview_vfx()
+
+#endregion
+
+#region Private functions
+
 ## Generates a random position within the chunk to place a prop. It prevents positions too close to other props.
 func _generate_position() -> Vector3:
 	var pos: Vector3
@@ -95,6 +111,10 @@ func _generate_position() -> Vector3:
 				break
 
 	return pos
+
+#endregion
+
+#region Signal connects
 
 ## When a [class WaterSpot] is empty, delete and create a new one
 func _on_water_spot_delete(spot: WaterSpot) -> void:
@@ -117,3 +137,5 @@ func _on_treasure_spot_delete(spot: TreasureSpot) -> void:
 	_treasure_spots[index].queue_free()
 	_treasure_spots.remove_at(index)
 	on_treasure_found.emit()
+
+#endregion

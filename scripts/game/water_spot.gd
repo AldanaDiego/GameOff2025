@@ -43,6 +43,21 @@ func reveal() -> void:
 func get_state() -> State:
 	return _state
 
+func preview_vfx() -> void:
+	_wave_vfx.emitting = true
+	_sparkle_vfx.emitting = true
+	_extract_vfx.emitting = true
+
+	var timer = GlobalTools.add_timer_node(self, 1)
+	timer.start()
+	await timer.timeout
+
+	_wave_vfx.emitting = false
+	_sparkle_vfx.emitting = false
+	_extract_vfx.emitting = false
+
+	timer.queue_free()
+
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player") and _state != State.EMPTY:
 		_is_player_inside = true

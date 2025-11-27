@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://daotno65d3anr" path="res://assets/music/game.wav" id="3_g082p"]
 
 [node name="MusicManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_fc8cn")
 title_screen_music = ExtResource("2_g082p")
 game_music = ExtResource("3_g082p")

@@ -41,6 +41,8 @@ var _inner_temperature: float
 signal on_radar_used
 signal on_water_depleted
 
+#region Setup and process
+
 func _ready() -> void:
 	_animation.playback_default_blend_time = 0.6
 	_drill_button_pressed = 0.0
@@ -110,6 +112,7 @@ func _physics_process(delta) -> void:
 				engine_force = ENGINE_POWER * (-1.0 if accel_input < 0 else 1.0)
 		else:
 			engine_force = 0.0
+		# End of copied code lol
 
 		if engine_force == 0:
 			_animation.play("Idle")
@@ -122,6 +125,10 @@ func _physics_process(delta) -> void:
 		for particles in _wheel_dust:
 			particles.emitting = _speed_stage > 0
 			particles.amount_ratio = 0.5 if _speed_stage < 2 else 1.0
+
+#endregion
+
+#region Private functions
 
 ## Digs into the ground interacting with a nearby [class WaterSpot]
 func _start_drill_action() -> void:
@@ -161,6 +168,10 @@ func _start_radar_action() -> void:
 	_radar_wave_vfx.emitting = false
 	_state = PlayerState.IDLE
 	on_radar_used.emit()
+
+#endregion
+
+#region Public functions
 
 ## Updates references to WaterSpot when entering or leaving their Area3D
 func set_current_water_spot(spot: WaterSpot) -> void:
@@ -226,3 +237,30 @@ func update(world_temp_level: int) -> void:
 
 	if _water_tank_level == 0.0:
 		on_water_depleted.emit()
+
+## Plays all vfx on the player. Needed when loading the game for WebGL build
+func preview_vfx() -> void:
+	var radar_charge_vfx: GPUParticles3D = $scorpion/Armature/Skeleton3D/RadarBone/RadarChargeParticles
+	
+	radar_charge_vfx.emitting = true
+	_radar_wave_vfx.emitting = true
+	_drill_particles_left.emitting = true
+	_drill_particles_right.emitting = true
+
+	for wheel in _wheel_dust:
+		wheel.emitting = true
+	
+	var timer = GlobalTools.add_timer_node(self, 1.5)
+	timer.start()
+	await timer.timeout
+
+	radar_charge_vfx.emitting = false
+	_radar_wave_vfx.emitting = false
+	_drill_particles_left.emitting = false
+	_drill_particles_right.emitting = false
+	for wheel in _wheel_dust:
+		wheel.emitting = false
+
+	timer.queue_free()
+
+#endregion

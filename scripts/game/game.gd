@@ -46,6 +46,13 @@ func _process(_delta) -> void:
 
 #endregion
 
+#region Public functions
+
+## Plays vfx of the game. Needed when loading the game for WebGL build
+func preview_vfx() -> void:
+    _stage.preview_vfx()
+    await _player.preview_vfx()
+
 #region Private functions
 
 ## Every second updates game behaviour
