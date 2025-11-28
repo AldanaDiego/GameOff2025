@@ -67,22 +67,6 @@ alpha_curve = SubResource("CurveTexture_ehoms")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bg6sr"]
 
-[sub_resource type="Animation" id="Animation_ehoms"]
-resource_name = "appear"
-length = 0.833337
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material_override:shader_parameter/height")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.833333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-1.0, 0.2]
-}
-
 [sub_resource type="Animation" id="Animation_o16qt"]
 length = 0.001
 tracks/0/type = "value"
@@ -120,6 +104,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ehoms"]
+resource_name = "appear"
+length = 0.833337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 0.2]
 }
 
 [sub_resource type="Animation" id="Animation_3u7yp"]

@@ -124,7 +124,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-377.056, -48.545)
 modes/cull = 1
 flags/unshaded = true
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_r58uw")

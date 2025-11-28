@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbqa1uxe2h33a"]
+[gd_scene load_steps=13 format=3 uid="uid://dbqa1uxe2h33a"]
 
 [ext_resource type="Script" uid="uid://dp3xl5gc3ldj" path="res://scripts/main/title_scene.gd" id="1_0umwg"]
 [ext_resource type="PackedScene" uid="uid://s47pl5eayam1" path="res://scenes/game/chunk.tscn" id="2_mswmy"]
 [ext_resource type="Sky" uid="uid://b3lloh0qp2vi6" path="res://assets/materials/sky.tres" id="2_sxkgi"]
 [ext_resource type="PackedScene" uid="uid://ih7uiwkwxfw" path="res://scenes/game/player.tscn" id="3_sxkgi"]
+[ext_resource type="PackedScene" uid="uid://4uvspekxsbj" path="res://scenes/game/decorations/palm_tree.tscn" id="5_sxkgi"]
 
 [sub_resource type="Environment" id="Environment_sxkgi"]
 background_mode = 2
@@ -52,7 +53,7 @@ environment = SubResource("Environment_sxkgi")
 [node name="Chunk" parent="." instance=ExtResource("2_mswmy")]
 
 [node name="Player" parent="." instance=ExtResource("3_sxkgi")]
-transform = Transform3D(0.246999, 0, 0.969016, 0, 1, 0, -0.969016, 0, 0.246999, -3, 0, 0)
+transform = Transform3D(0.379456, 0, 0.92521, 0, 1, 0, -0.92521, 0, 0.379456, -2.03, 0, 0)
 
 [node name="Skeleton3D" parent="Player/scorpion/Armature" index="0"]
 bones/1/rotation = Quaternion(-0.378436, 0.0104196, -0.00409373, 0.92556)
@@ -71,7 +72,15 @@ process_material = SubResource("ParticleProcessMaterial_0umwg")
 draw_pass_1 = SubResource("QuadMesh_mswmy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.55, 4)
 
+[node name="PalmTree" parent="." instance=ExtResource("5_sxkgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.945, 0, -3.54)
+
+[node name="PalmTree" parent="PalmTree" index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[editable path="Chunk"]
 [editable path="Player"]
 [editable path="Player/scorpion"]
+[editable path="PalmTree"]

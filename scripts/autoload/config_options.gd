@@ -38,7 +38,7 @@ var _settings := {
 		},
 		"Music": {
 			"type": OptionType.SLIDER,
-			"default": 1
+			"default": 0.5
 		},
 		"SFX": {
 			"type": OptionType.SLIDER,

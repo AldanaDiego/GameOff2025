@@ -6,8 +6,12 @@ const MAX_TEMP: int = 60
 const START_TEMP: int = 45
 const HEATWAVE_DURATION: int = 10
 const BETWEEN_HEATWAVE_DURATION: int = 10
+const DEFAULT_SKY_COLOR: Color = Color(0.04, 0.46, 0.77)
+const HEATWAVE_SKY_COLOR: Color = Color(0.716, 0.3, 0.15)
 
 enum State { NORMAL, PRE_HEATWAVE, HEATWAVE, POST_HEATWAVE}
+
+@export var _sky: Sky
 
 @onready var _light: DirectionalLight3D = $Light
 
@@ -20,6 +24,7 @@ var _temp_midpoint: int
 var _state: State
 
 func _ready() -> void:
+    _sky.sky_material.sky_top_color = DEFAULT_SKY_COLOR
     _current_temperature = START_TEMP
     _cycles_since_last_heatwave = 0
     _cycles_since_temp_change = 0
@@ -42,7 +47,6 @@ func update() -> void:
 
     var temp_level: int = get_current_temperature_level()
     if _last_temp_level != temp_level:
-        _last_temp_level = temp_level
         var target_color: Color
         var target_rotation: Vector3
         match temp_level:
@@ -59,6 +63,14 @@ func update() -> void:
         var tween: Tween = create_tween()
         tween.tween_property(_light, "light_color", target_color, Game.TICK).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
         tween.parallel().tween_property(_light, "rotation_degrees", target_rotation, Game.TICK).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+        if temp_level == 2 or _last_temp_level == 2:
+            var target_sky_color: Color = HEATWAVE_SKY_COLOR if temp_level == 2 else DEFAULT_SKY_COLOR
+            tween = $WorldEnvironment.create_tween()
+            tween.tween_property(_sky.sky_material, "sky_top_color", target_sky_color, Game.TICK).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+        
+
+        _last_temp_level = temp_level
         
 
 ## Changes temperature with weighted probability

@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b62xhn2js0lry"]
+[gd_scene load_steps=4 format=3 uid="uid://b62xhn2js0lry"]
 
 [ext_resource type="Script" uid="uid://dbcpq6blpipvh" path="res://scripts/game/weather.gd" id="1_74chp"]
+[ext_resource type="Sky" uid="uid://b3lloh0qp2vi6" path="res://assets/materials/sky.tres" id="2_ewdu4"]
+
+[sub_resource type="Environment" id="Environment_dhrq2"]
+background_mode = 2
+sky = ExtResource("2_ewdu4")
+ambient_light_source = 2
+ambient_light_color = Color(0.344076, 0.344076, 0.344076, 1)
+tonemap_mode = 2
 
 [node name="Weather" type="Node3D"]
 script = ExtResource("1_74chp")
+_sky = ExtResource("2_ewdu4")
 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 4.37114e-08, -4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 0, 20, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+process_mode = 1
+environment = SubResource("Environment_dhrq2")
