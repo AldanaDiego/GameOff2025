@@ -9,7 +9,7 @@ enum State { HIDDEN, VISIBLE, EXTRACTING, EMPTY }
 @onready var _area: Area3D = $Area3D
 @onready var _wave_vfx: GPUParticles3D = $WaveParticles
 @onready var _sparkle_vfx: GPUParticles3D = $SparkleParticles
-@onready var _extract_vfx: GPUParticles3D = $ExtractParticles
+@onready var _extract_animation: AnimationPlayer = $Water/AnimationPlayer
 
 var _state: State
 var _extract_timer: Timer
@@ -31,7 +31,7 @@ func _ready() -> void:
 func extract() -> void:
 	_state = State.EXTRACTING
 	_sparkle_vfx.emitting = false
-	_extract_vfx.emitting = true
+	_extract_animation.play("appear")
 	_extract_timer.start()
 
 ## Shows VFX for the player to find this area
@@ -46,7 +46,6 @@ func get_state() -> State:
 func preview_vfx() -> void:
 	_wave_vfx.emitting = true
 	_sparkle_vfx.emitting = true
-	_extract_vfx.emitting = true
 
 	var timer = GlobalTools.add_timer_node(self, 1)
 	timer.start()
@@ -54,7 +53,6 @@ func preview_vfx() -> void:
 
 	_wave_vfx.emitting = false
 	_sparkle_vfx.emitting = false
-	_extract_vfx.emitting = false
 
 	timer.queue_free()
 
@@ -78,7 +76,7 @@ func _on_body_exited(body: Node3D) -> void:
 
 func _on_extraction_finished() -> void:
 	_state = State.EMPTY
-	_extract_vfx.emitting = false
+	_extract_animation.play_backwards("appear")
 	_wave_vfx.emitting = false
 	if !_is_player_inside:
 		_queue_free_timer.start()

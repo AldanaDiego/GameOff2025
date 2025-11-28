@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dnr278pe1vmth"]
+
+[ext_resource type="Shader" uid="uid://ef5lqatjn52y" path="res://assets/shaders/water_spot.tres" id="1_dal7s"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_dal7s")
+shader_parameter/speed = 0.7
+shader_parameter/height = -1.0

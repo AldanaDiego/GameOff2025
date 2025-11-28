@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cdabtqsx37mkn"]
+[gd_scene load_steps=23 format=3 uid="uid://cdabtqsx37mkn"]
 
 [ext_resource type="Script" uid="uid://ci2mhk664qqr4" path="res://scripts/game/water_spot.gd" id="1_28lgv"]
 [ext_resource type="Texture2D" uid="uid://caje231lgkiv3" path="res://assets/images/donut.png" id="2_vq5qy"]
 [ext_resource type="Texture2D" uid="uid://bytj0u4185ioh" path="res://assets/images/sparkle.png" id="3_px1ra"]
+[ext_resource type="Material" uid="uid://dnr278pe1vmth" path="res://assets/materials/water_spot.tres" id="4_ehoms"]
+[ext_resource type="ArrayMesh" uid="uid://dailn07ugiubt" path="res://assets/models/props/water.obj" id="4_hgxsv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tjdap"]
 height = 1.0
@@ -65,47 +67,96 @@ alpha_curve = SubResource("CurveTexture_ehoms")
 
 [sub_resource type="QuadMesh" id="QuadMesh_bg6sr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehoms"]
-transparency = 1
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-roughness = 0.0
+[sub_resource type="Animation" id="Animation_ehoms"]
+resource_name = "appear"
+length = 0.833337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 0.2]
+}
 
-[sub_resource type="Curve" id="Curve_3u7yp"]
-_data = [Vector2(0.823672, 0.98401), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Animation" id="Animation_o16qt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
-[sub_resource type="CurveTexture" id="CurveTexture_bg6sr"]
-curve = SubResource("Curve_3u7yp")
+[sub_resource type="Animation" id="Animation_3u7yp"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.05, 1.05, 1.05), Vector3(1, 1, 1)]
+}
 
-[sub_resource type="Curve" id="Curve_b86ub"]
-_data = [Vector2(0, 0.235137), 0.0, 0.0, 0, 0, Vector2(0.166667, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_atuqr"]
-curve = SubResource("Curve_b86ub")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4f6of"]
-emission_shape_scale = Vector3(0.25, 0.1, 0.25)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 90.0
-direction = Vector3(0, 1, 0)
-spread = 7.0
-initial_velocity_min = 5.5
-initial_velocity_max = 6.0
-gravity = Vector3(0, -5, 0)
-scale_curve = SubResource("CurveTexture_atuqr")
-color = Color(0.176471, 0.768627, 1, 1)
-alpha_curve = SubResource("CurveTexture_bg6sr")
-
-[sub_resource type="SphereMesh" id="SphereMesh_c6sav"]
-radius = 0.1
-height = 0.2
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o16qt"]
+_data = {
+&"RESET": SubResource("Animation_o16qt"),
+&"appear": SubResource("Animation_ehoms"),
+&"idle": SubResource("Animation_3u7yp")
+}
 
 [node name="WaterSpot" type="Node3D"]
 script = ExtResource("1_28lgv")
@@ -135,10 +186,12 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_3u7yp")
 draw_pass_1 = SubResource("QuadMesh_bg6sr")
 
-[node name="ExtractParticles" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_ehoms")
-emitting = false
-amount = 50
-lifetime = 2.2
-process_material = SubResource("ParticleProcessMaterial_4f6of")
-draw_pass_1 = SubResource("SphereMesh_c6sav")
+[node name="Water" type="MeshInstance3D" parent="."]
+material_override = ExtResource("4_ehoms")
+mesh = ExtResource("4_hgxsv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Water"]
+libraries = {
+&"": SubResource("AnimationLibrary_o16qt")
+}
+next/appear = &"idle"
