@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bigraq2e5mqxi"]
+[gd_scene load_steps=6 format=3 uid="uid://bigraq2e5mqxi"]
 
 [ext_resource type="Script" uid="uid://ddkl3gloas3ax" path="res://scripts/ui/scene_transition.gd" id="1_iv4ym"]
+[ext_resource type="Theme" uid="uid://d4bhotf5ve6u2" path="res://assets/ui_themes/main_theme.tres" id="2_kq3v3"]
 
 [sub_resource type="Animation" id="Animation_ctax0"]
 length = 0.001
@@ -53,5 +54,23 @@ color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6fd7v")
+&"": SubResource("AnimationLibrary_6fd7v")
 }
+
+[node name="LoadingLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.5
+offset_top = -33.5
+offset_right = 346.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_kq3v3")
+theme_override_font_sizes/font_size = 48
+text = "SCENE_TRANSITION_LOADING"
+horizontal_alignment = 1

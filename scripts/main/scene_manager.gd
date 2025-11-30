@@ -47,8 +47,11 @@ func _start_game() -> void:
 		_title_screen.queue_free()
 		_settings_menu.queue_free()
 		_title_scene.queue_free()
+		
 		_load_game_scene()
+		_scene_transition.set_loading_visible(true)
 		await _game_scene.preview_vfx()
+		_scene_transition.set_loading_visible(false)
 
 		_music.set_stream(_music.game_music)
 		_music.fade_in(3)

@@ -201,3 +201,7 @@ msgstr "Return to Title"
 #: scripts/ui/game/game_over.gd
 msgid "GAME_OVER_LABEL_WIN"
 msgstr "You win!"
+
+#: scenes/ui/scene_transition.tscn
+msgid "SCENE_TRANSITION_LOADING"
+msgstr "Loading"

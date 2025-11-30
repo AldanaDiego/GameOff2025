@@ -271,6 +271,9 @@ func preview_vfx() -> void:
 	for wheel in _wheel_dust:
 		wheel.emitting = false
 
+	timer.start(1)
+	await timer.timeout
+
 	timer.queue_free()
 
 #endregion

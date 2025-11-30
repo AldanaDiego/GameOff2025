@@ -201,3 +201,7 @@ msgstr "Volver al inicio"
 #: scripts/ui/game/game_over.gd
 msgid "GAME_OVER_LABEL_WIN"
 msgstr "¡Éxito!"
+
+#: scenes/ui/scene_transition.tscn
+msgid "SCENE_TRANSITION_LOADING"
+msgstr "Cargando"

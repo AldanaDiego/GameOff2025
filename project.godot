@@ -101,7 +101,7 @@ pause={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/translations/en.mo", "res://assets/translations/es.mo")
-locale/translations_pot_files=PackedStringArray("res://scenes/ui/title_screen.tscn", "res://scenes/ui/settings_menu.tscn", "res://scenes/ui/settings/general_settings.tscn", "res://scenes/ui/settings/video_settings.tscn", "res://scenes/ui/settings/volume_settings.tscn", "res://scripts/ui/settings/general_settings.gd", "res://scripts/ui/settings/video_settings.gd", "res://scenes/ui/settings/keyboard_settings.tscn", "res://scripts/autoload/config_options.gd", "res://scripts/ui/settings/option_ui_input_prompt.gd", "res://scenes/ui/settings/controller_settings.tscn", "res://scenes/ui/credits.tscn", "res://scenes/ui/game/pause_menu.tscn", "res://scenes/ui/game/game_over.tscn", "res://scripts/ui/game/game_over.gd")
+locale/translations_pot_files=PackedStringArray("res://scenes/ui/title_screen.tscn", "res://scenes/ui/settings_menu.tscn", "res://scenes/ui/settings/general_settings.tscn", "res://scenes/ui/settings/video_settings.tscn", "res://scenes/ui/settings/volume_settings.tscn", "res://scripts/ui/settings/general_settings.gd", "res://scripts/ui/settings/video_settings.gd", "res://scenes/ui/settings/keyboard_settings.tscn", "res://scripts/autoload/config_options.gd", "res://scripts/ui/settings/option_ui_input_prompt.gd", "res://scenes/ui/settings/controller_settings.tscn", "res://scenes/ui/credits.tscn", "res://scenes/ui/game/pause_menu.tscn", "res://scenes/ui/game/game_over.tscn", "res://scripts/ui/game/game_over.gd", "res://scenes/ui/scene_transition.tscn")
 
 [rendering]
 
